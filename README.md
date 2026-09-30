@@ -1,45 +1,57 @@
-# Seartec Microsite
+# Seartec Microsite (staging)
 
-A single-page concept microsite for **Seartec** — office technology (printers, MFDs, scanners) on month-to-month rental, serving businesses across South Africa.
+A one-page microsite for **Seartec**, promoting Month-to-Month printer and multifunction device rentals. Built by Conversion Advantage and hosted on GitHub Pages.
 
-Built and hosted as part of the **CAMicrosites** collection (Conversion Advantage GitHub Pages project).
+**Live staging URL:** https://conversionadvantage00.github.io/seartec-staging/  
+**Repository:** https://github.com/conversionadvantage00/seartec-staging
 
-## Live site
+## What's on the page
 
-Once GitHub Pages is enabled for this repo (see below), this microsite is served at:
+| Section | Purpose |
+|---|---|
+| Hero | Month-to-Month headline, key stats, CTAs to quote and plan finder |
+| Why Seartec | Zero risk, everything included, sized pricing, track record since 1968 |
+| Plan finder | 3-step picker: industry → team size → recommended plan |
+| 30-day free trial | How the trial works |
+| Good to know | Term, price, delivery and gap cover details |
+| Expertise | "Printer problems? Ask the people who fix them" |
+| Reviews | Client testimonials |
+| Branches | The five branches with click-to-call numbers |
+| Get a quote | Quote request form |
+
+## Files
 
 ```
-https://conversionadvantage00.github.io/CAMicrosites/seartec-staging/
+/ (repo root)
+├── index.html   # The whole site: HTML, CSS, JS and images (base64) in one file
+└── README.md
 ```
 
-## What's in this folder
+The site is fully self-contained. The only external request is Google Fonts (Barlow). There is no build step and nothing to install.
 
-```
-seartec-staging/
-├── index.html   ← the entire site (self-contained bundle)
-└── README.md    ← this file
-```
+## Deploying
 
-`index.html` is a **standalone bundle**: all markup, styles, scripts, fonts, images and video are packed into the one file and unpacked client-side on load (you'll briefly see an "Unpacking..." indicator). That means:
+1. Replace `index.html` in the root of this repo and commit to `main`.
+2. GitHub Pages republishes automatically, usually within a minute or two.
+3. Hard-refresh the staging URL (Ctrl/Cmd + Shift + R) to bypass the cache.
 
-- No build step, no separate `/assets` folder, no external file references needed.
-- It's a large file (~12 MB) since every asset is embedded as base64 — that's expected for this export format, not a mistake.
-- To update the site, just replace `index.html` with a freshly exported bundle. There's nothing else to edit or wire up.
+Pages must be enabled under **Settings → Pages**, source `main` / root.
 
-## Deploying on GitHub Pages
+To preview locally, just open `index.html` in a browser.
 
-If Pages isn't already turned on for the `conversionadvantage00/CAMicrosites` repo:
+## Before going live
 
-1. Push this folder (`seartec-staging/`) to the `main` branch.
-2. In the repo, go to **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to "Deploy from a branch."
-4. Choose the `main` branch and `/ (root)` folder, then save.
-5. GitHub will publish the whole repo; this microsite will be reachable at the `/seartec-staging/` path shown above because `index.html` sits inside that folder.
+- [ ] **Connect the quote form.** It currently validates and shows a thank-you message, but **does not send the enquiry anywhere**. Hook it up to Formspree, Netlify Forms, a CRM webhook or similar (see the `quoteForm` submit handler near the bottom of `index.html`).
+- [ ] **Remove the `noindex` tag.** The page carries `<meta name="robots" content="noindex, nofollow">` so the staging copy isn't indexed by Google. Delete that line once the site is on its final domain.
+- [ ] **Update `og:url`** to the final domain, and add an `og:image` for link previews.
+- [ ] **Social links.** Facebook and LinkedIn currently point to the platform home pages; swap in Seartec's profile URLs.
+- [ ] Check branch phone numbers, the WhatsApp number (+27 21 404 2800) and `info@seartec.co.za` with the client.
 
-If Pages is already enabled for the repo, no extra configuration is needed — pushing this folder is enough, and the site will appear at the URL above within a minute or two.
+## Editing notes
 
-## About this build
+- Colours and type sizes are CSS variables in `:root` at the top of the file (cyan `#00afd7`, ink `#1e1e21`, Barlow font).
+- Images are embedded as base64, which is why the file is ~3.3 MB. To make edits easier or the page lighter, images can be moved into an `assets/` folder and referenced by path.
 
-- Site content and copy: rental plans, cost-saving analysis pitch, testimonials, and the Cape Town/Paarl rep contacts, as supplied for the Seartec concept.
-- Footer note carried over from the export: *"Concept preview. Layouts, creative and campaign concepts shown here remain the property of Conversion Advantage until a signed engagement is in place."*
-- The quote-request form on the page is a front-end demo only (it doesn't send anywhere) — the footer notes that in the live microsite it would deliver to a sales inbox/CRM.
+---
+
+© Seartec. Site by Conversion Advantage.
