@@ -4,8 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Seartec Microsite</title>
-<meta name="description" content="Seartec office automation: printing, document workflow, display and print management solutions, with a free cost-saving quote.">
-<link rel="icon" type="image/png" href="img/logo-mark.png">
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap">
@@ -20,7 +19,6 @@
   --white: #ffffff;
   --section: #f3f4f4;
   --ink: #1e1e21;
-  --ink-soft: #3f4449;
   --slate: #575a61;
   --muted: #62696f;
   --hair: #e1e5e7;
@@ -45,7 +43,6 @@
   --breathe: cubic-bezier(.45,0,.2,1);
   --slide: 760ms;
   --wrap: 1240px;
-  --t-display: clamp(52px, 8.2vw, 132px);
   --t-h2: clamp(40px, 5.6vw, 84px);
   --t-row: clamp(22px, 2.2vw, 36px);
   --t-lede: clamp(17px, 1.45vw, 20px);
@@ -142,15 +139,12 @@ button, input, select { font-family: var(--font); }
 @keyframes reveal { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: none; } }
 
 /* ================= HEADER ================= */
-.site-header { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 150; padding: 14px 16px; transition: transform 460ms var(--ease); }
-.site-header.is-hidden { transform: translateY(-140%); }
-.nav-pill { max-width: var(--wrap); margin: 0 auto; padding: 10px 10px 10px 24px; display: flex; align-items: center; gap: 30px; background: rgba(255,255,255,.82); backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); border: 1px solid rgba(30,30,33,.06); border-radius: 100px; box-shadow: 0 12px 34px -18px rgba(30,30,33,.3); }
+.site-header { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 150; padding: 14px 16px; }
+.nav-pill { max-width: var(--wrap); margin: 0 auto; padding: 10px 10px 10px 24px; display: flex; align-items: center; gap: 30px; background: rgba(255,255,255,.94); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(30,30,33,.06); border-radius: 100px; box-shadow: 0 12px 34px -18px rgba(30,30,33,.3); }
 .nav-logo img { height: 24px; width: auto; display: block; }
 .nav-links { display: flex; gap: 30px; flex: 1; font-size: 15.5px; font-weight: 500; color: var(--slate); white-space: nowrap; }
 .nav-links a { position: relative; padding: 4px 0; }
 .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--cyan); transform: scaleX(0); transform-origin: left; transition: transform 800ms var(--breathe); }
-.nav-links a { transition: color 600ms var(--breathe); }
-.nav-links a:hover { color: var(--slate); }
 .nav-links a:hover::after { transform: scaleX(1); }
 .nav-cta { flex: none; background: var(--slate); color: var(--white); font-size: 15px; font-weight: 600; padding: 12px 24px; border-radius: 100px; transition: background 700ms var(--breathe), color 700ms var(--breathe); }
 .nav-cta:hover { background: var(--cyan); color: var(--slate); }
@@ -165,44 +159,200 @@ button, input, select { font-family: var(--font); }
 .menu nav a { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--dark-hair); font-size: clamp(30px, 9vw, 44px); font-weight: 500; letter-spacing: -.03em; opacity: 0; transform: translateY(18px); transition: opacity 420ms var(--ease), transform 480ms var(--ease); }
 .menu nav a::after { content: "→"; font-size: 22px; color: var(--cyan); }
 .menu.is-open nav a { opacity: 1; transform: none; }
-.menu.is-open nav a:nth-child(2) { transition-delay: 55ms; } .menu.is-open nav a:nth-child(3) { transition-delay: 110ms; } .menu.is-open nav a:nth-child(4) { transition-delay: 165ms; } .menu.is-open nav a:nth-child(5) { transition-delay: 220ms; }
+.menu.is-open nav a:nth-child(2) { transition-delay: 55ms; } .menu.is-open nav a:nth-child(3) { transition-delay: 110ms; } .menu.is-open nav a:nth-child(4) { transition-delay: 165ms; } .menu.is-open nav a:nth-child(5) { transition-delay: 220ms; } .menu.is-open nav a:nth-child(6) { transition-delay: 275ms; }
 .menu-contact { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 6px; padding: 0 24px 34px; font-size: 18px; }
 .menu-contact span { color: var(--on-dark-muted); font-weight: 300; }
 @media (max-width: 960px) { .nav-links, .nav-cta { display: none; } .burger { display: flex; } }
 
 /* ================= HERO ================= */
 .hero { position: relative; overflow: hidden; color: var(--slate); min-height: max(640px, 86svh); display: flex; flex-direction: column; }
-.hero-bg { position: absolute; inset: -4%; }
-.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 10% 45%; display: block; }
-.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(100deg, rgba(255,255,255,.85) 0%, rgba(255,255,255,.55) 38%, rgba(255,255,255,.22) 66%, rgba(255,255,255,.04) 100%); }
-.hero::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.6) 22%, rgba(255,255,255,0) 44%); }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(6,44,92,.30) 0%, rgba(6,44,92,.12) 38%, rgba(6,44,92,0) 56%); }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.72) 9%, rgba(255,255,255,.25) 20%, rgba(255,255,255,0) 32%); }
+.hero-veil { position: absolute; inset: 0; z-index: 1; background: #fff; opacity: 0; pointer-events: none; }
 .hero-main { position: relative; z-index: 2; flex: 1; display: flex; align-items: center; }
-.hero-copy { display: flex; flex-direction: column; gap: 28px; max-width: 760px; padding-top: 120px; padding-bottom: 40px; }
-.hero h1 { margin: 0; font-size: var(--t-display); font-weight: 600; line-height: .9; letter-spacing: -.05em; color: var(--slate); }
-.hero h1 span { color: var(--cyan); }
-.hero h1 .logo-dot { display: inline-block; width: auto; height: 0.2em; margin-left: 0.06em; vertical-align: baseline; transform: translateY(0.02em); }
-.hero h1 em { font-style: normal; font-weight: 300; color: var(--slate); }
-.hero-sub { margin: 0; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; color: var(--slate); max-width: 40ch; font-weight: 400; }
-.hero-sub b { font-weight: 600; color: var(--slate); }
+.hero-copy { display: flex; flex-direction: column; gap: 26px; max-width: 620px; padding-top: 120px; padding-bottom: 40px; }
+.hero h1 { margin: 0; font-size: clamp(48px, 6.6vw, 108px); font-weight: 600; line-height: .92; letter-spacing: -.05em; color: #fff; text-shadow: 0 2px 24px rgba(4,36,78,.18); }
+.hero h1 .logo-dot { display: inline-block; width: auto; height: 0.24em; margin-left: 0.06em; vertical-align: baseline; transform: translateY(0.03em); }
+.hero-sub { margin: 0; max-width: 41ch; font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; font-weight: 400; color: rgba(255,255,255,.92); text-shadow: 0 1px 10px rgba(4,36,78,.25); }
+.hero-sub b { font-weight: 600; color: #fff; }
+.hero .eyebrow { color: rgba(255,255,255,.95); }
+.hero .eyebrow::before { background: #fff; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 .hero-stats { position: relative; z-index: 2; padding-bottom: 28px; }
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; padding: 22px 30px; border-radius: 26px; background: rgba(255,255,255,.62); border: 1px solid rgba(255,255,255,.75); backdrop-filter: blur(18px) saturate(1.3); -webkit-backdrop-filter: blur(18px) saturate(1.3); box-shadow: 0 24px 60px -34px rgba(30,30,33,.35); }
+.hero .stats { background: rgba(255,255,255,.94); border-color: rgba(255,255,255,.9); box-shadow: 0 30px 60px -30px rgba(4,36,78,.45); }
 .stat { display: flex; flex-direction: column; gap: 8px; padding: 6px 0; }
 .stat b { font-size: clamp(30px, 3.2vw, 48px); font-weight: 600; letter-spacing: -.04em; line-height: 1; color: var(--slate); font-variant-numeric: tabular-nums; }
 .stat b::after { content: ""; display: inline-block; width: 8px; height: 8px; margin-left: 6px; border-radius: 50%; background: var(--c); vertical-align: top; margin-top: 8px; }
 .stat span { font-size: 14.5px; color: var(--muted); }
 .hero .brand-rule { position: relative; z-index: 2; }
-@supports (animation-timeline: scroll()) {
-  .hero-copy { animation: hero-fade linear both; animation-timeline: scroll(root block); animation-range: 0 70vh; }
-  .hero-bg { animation: hero-zoom linear both; animation-timeline: scroll(root block); animation-range: 0 100vh; }
+.nw { white-space: nowrap; }
+@media (max-width: 1100px) {
+  .hero::before { background: linear-gradient(180deg, rgba(6,44,92,.18) 0%, rgba(6,44,92,0) 60%); }
+  .hero-copy { max-width: 680px; padding-bottom: 8px; }
+  .hero-sub { max-width: 46ch; }
 }
-@keyframes hero-fade { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-48px); } }
-@keyframes hero-zoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 @media (max-width: 760px) {
   .hero { min-height: max(640px, 100svh); }
-  .hero::before { background: linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.86) 60%, rgba(255,255,255,.75) 100%); }
+  .hero-copy { padding-top: 112px; }
   .stats { grid-template-columns: repeat(2, minmax(0,1fr)); row-gap: 18px; padding: 20px 22px; }
 }
+
+/* Hero scroll effect: the background zooms gently and fades to white, the
+   headline copy lifts and fades. The CTA buttons lift with the copy but never
+   fade. Runs on the compositor via CSS scroll timelines where supported
+   (Chrome, Edge, Safari 26+); the script at the bottom covers other browsers. */
+.hero-bg, .hero-copy { will-change: transform; }
+.hero-veil { will-change: opacity; }
+.hero-copy > .eyebrow, .hero-copy > h1, .hero-copy > .hero-sub, .hero-copy > .hero-art-wrap { will-change: opacity; }
+@keyframes hero-zoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+@keyframes hero-veil { from { opacity: 0; } to { opacity: .75; } }
+@keyframes hero-lift { from { transform: translate3d(0,0,0); } to { transform: translate3d(0,-48px,0); } }
+@keyframes hero-fade { from { opacity: 1; } to { opacity: 0; } }
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-bg { animation: hero-zoom linear both; animation-timeline: scroll(root block); animation-range: 0 100vh; }
+    .hero-veil { animation: hero-veil linear both; animation-timeline: scroll(root block); animation-range: 0 100vh; }
+    .hero-copy { animation: hero-lift linear both; animation-timeline: scroll(root block); animation-range: 0 70vh; }
+    .hero-copy > .eyebrow, .hero-copy > h1, .hero-copy > .hero-sub, .hero-copy > .hero-art-wrap { animation: hero-fade linear both; animation-timeline: scroll(root block); animation-range: 0 70vh; }
+  }
+}
+/* Pause the watercolour while the hero is off screen */
+.hero.is-idle .hs-wash i { animation-play-state: paused; }
+
+/* Interactive hero scene: CSS watercolour wash (no image) + mouse depth */
+.hero-bg { position: absolute; inset: 0; transform-origin: 70% 60%; container-type: size; }
+.hero {
+  --wc-indigo: #2a4f96;  /* deep blue behind the headline */
+  --wc-navy:   #30609f;
+  --wc-royal:  #336ea9;
+  --wc-ocean:  #1d86c0;
+  --wc-cerulean:#2ba0c3;
+  --wc-turq:   #35c0cc;
+  --wc-cyan:   #5fdcf5;  /* light blue highlights */
+  --wc-teal:   #50dcbe;
+  --wc-green:  #7de68c;
+  background: var(--wc-ocean);
+}
+.hero-scene { position: absolute; left: 50%; top: 50%; width: max(100cqw, 100cqh * 16 / 9); aspect-ratio: 16 / 9; transform: translate(-50%, -50%); }
+.hero-scene .hs-layer { position: absolute; inset: 0; }
+.hs-wash { overflow: hidden; transform: translate3d(calc(var(--mx, 0) * -12px), calc(var(--my, 0) * -8px), 0) scale(1.05);
+  background: linear-gradient(115deg, var(--wc-navy) 0%, var(--wc-royal) 26%, var(--wc-ocean) 50%, var(--wc-cerulean) 72%, var(--wc-turq) 100%); }
+.hs-wash i { position: absolute; display: block; filter: blur(22px); will-change: transform; animation: wc-a 26s ease-in-out infinite alternate; }
+/* each pigment pool: soft centre, slightly deeper rim (like watercolour drying), soft edge */
+.hs-wash .p1 { left: -14%; top: -22%; width: 62%; height: 92%; border-radius: 46% 54% 38% 62% / 52% 40% 60% 48%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--wc-indigo) 88%, transparent) 0%, color-mix(in srgb, var(--wc-indigo) 70%, transparent) 55%, color-mix(in srgb, var(--wc-indigo) 85%, #0b2a63) 68%, transparent 80%); animation-duration: 34s; }
+.hs-wash .p2 { left: 22%; top: 8%; width: 48%; height: 70%; border-radius: 58% 42% 55% 45% / 45% 58% 42% 55%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--wc-ocean) 80%, transparent) 0%, color-mix(in srgb, var(--wc-ocean) 55%, transparent) 58%, color-mix(in srgb, var(--wc-royal) 75%, transparent) 70%, transparent 82%); animation-name: wc-b; animation-duration: 28s; animation-delay: -9s; }
+.hs-wash .p3 { left: 56%; top: -26%; width: 54%; height: 78%; border-radius: 40% 60% 52% 48% / 60% 44% 56% 40%; mix-blend-mode: screen;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--wc-cyan) 72%, transparent) 0%, color-mix(in srgb, var(--wc-cyan) 45%, transparent) 55%, color-mix(in srgb, var(--wc-cyan) 60%, transparent) 66%, transparent 80%); animation-duration: 24s; animation-delay: -4s; }
+.hs-wash .p4 { left: 72%; top: 24%; width: 40%; height: 62%; border-radius: 52% 48% 40% 60% / 48% 56% 44% 52%; mix-blend-mode: screen;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--wc-green) 85%, transparent) 0%, color-mix(in srgb, var(--wc-green) 55%, transparent) 55%, color-mix(in srgb, var(--wc-teal) 60%, transparent) 67%, transparent 80%); animation-name: wc-b; animation-duration: 30s; animation-delay: -14s; }
+.hs-wash .p5 { left: 8%; top: 62%; width: 64%; height: 60%; border-radius: 44% 56% 60% 40% / 56% 42% 58% 44%; mix-blend-mode: screen;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--wc-turq) 80%, transparent) 0%, color-mix(in srgb, var(--wc-teal) 50%, transparent) 56%, color-mix(in srgb, var(--wc-turq) 70%, transparent) 68%, transparent 80%); animation-duration: 32s; animation-delay: -20s; }
+.hs-wash .p6 { left: 80%; top: 14%; width: 34%; height: 52%; border-radius: 60% 40% 46% 54% / 42% 60% 40% 58%; mix-blend-mode: screen;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--wc-teal) 70%, transparent) 0%, color-mix(in srgb, var(--wc-cyan) 40%, transparent) 58%, color-mix(in srgb, var(--wc-teal) 55%, transparent) 68%, transparent 80%); animation-name: wc-b; animation-duration: 22s; animation-delay: -7s; }
+.hs-wash .p7 { left: -12%; top: 48%; width: 46%; height: 64%; border-radius: 50% 50% 42% 58% / 58% 46% 54% 42%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--wc-navy) 80%, transparent) 0%, color-mix(in srgb, var(--wc-royal) 55%, transparent) 58%, color-mix(in srgb, var(--wc-navy) 75%, transparent) 70%, transparent 82%); animation-duration: 29s; animation-delay: -12s; }
+.hs-wash .p8 { left: 52%; top: 70%; width: 44%; height: 50%; border-radius: 56% 44% 50% 50% / 46% 54% 46% 54%; mix-blend-mode: screen;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--wc-green) 70%, transparent) 0%, color-mix(in srgb, var(--wc-teal) 45%, transparent) 58%, color-mix(in srgb, var(--wc-green) 55%, transparent) 68%, transparent 80%); animation-duration: 27s; animation-delay: -5s; }
+/* paper + pigment texture (static SVG noise, no image file) */
+.hs-wash .tex, .hs-wash .grain { position: absolute; inset: 0; pointer-events: none; }
+.hs-wash .tex { mix-blend-mode: soft-light; opacity: .75; background-size: cover;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' preserveAspectRatio='none'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0035 .006' numOctaves='5' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -.45'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.hs-wash .grain { mix-blend-mode: overlay; opacity: .14;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); }
+@keyframes wc-a {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
+  33%  { transform: translate(7%, 6%) rotate(14deg) scale(1.1); }
+  66%  { transform: translate(-5%, 9%) rotate(-8deg) scale(.94); }
+  100% { transform: translate(5%, -6%) rotate(20deg) scale(1.06); }
+}
+@keyframes wc-b {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1.04); }
+  40%  { transform: translate(-8%, -6%) rotate(-16deg) scale(.92); }
+  75%  { transform: translate(6%, -9%) rotate(10deg) scale(1.14); }
+  100% { transform: translate(-4%, 7%) rotate(-22deg) scale(1); }
+}
+.hs-printers img { position: absolute; left: 47.11%; top: 41.38%; width: 45.92%; height: auto; display: block; }
+@media (max-width: 1100px) { .hs-printers { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .hs-wash i { animation: none; }
+  .hero-scene .hs-layer { transform: none !important; }
+}
+/* Hero grounding + colour bloom
+   Printer feet run from about (46.7%, 71.9%) to (89.3%, 77.0%) of the scene, tilted ~4deg. */
+/* 1) Floor: soft studio sweep - wall stays deep, floor lifts and calms under the printers */
+.hs-floor { pointer-events: none;
+  background:
+    radial-gradient(ellipse 36% 10% at 70% 77%, rgba(225,247,255,.55) 0%, rgba(205,240,252,.22) 55%, rgba(205,240,252,0) 100%),
+    linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 62%, rgba(214,240,250,.18) 70%, rgba(226,246,252,.32) 82%, rgba(236,250,255,.4) 100%); }
+/* 2) Bloom: a concentrated watercolour burst behind the machines (ink edges via #hs-ink) */
+.hs-bloom { pointer-events: none; will-change: transform; transform: translate3d(calc(var(--mx, 0) * -6px), calc(var(--my, 0) * -4px), 0); }
+.hs-bloom .ink { position: absolute; inset: 0; filter: url(#hs-ink); }
+.hs-bloom i { position: absolute; display: block; }
+.hs-bloom .b1 { left: 59%; top: 14%; width: 32%; height: 58%; border-radius: 48% 52% 40% 60% / 56% 44% 56% 44%; filter: blur(3px);
+  background: radial-gradient(closest-side, rgba(230,252,255,.95) 0%, rgba(120,228,250,.9) 30%, rgba(43,170,215,.82) 62%, rgba(22,96,170,.75) 84%, rgba(22,96,170,0) 100%); }
+.hs-bloom .b2 { left: 64%; top: 1%; width: 17%; height: 30%; border-radius: 60% 40% 55% 45% / 40% 60% 40% 60%; filter: blur(2px);
+  background: radial-gradient(closest-side, rgba(210,250,255,.9) 0%, rgba(95,220,245,.75) 55%, rgba(30,120,190,.55) 85%, rgba(30,120,190,0) 100%); }
+.hs-bloom .b3 { left: 80%; top: 20%; width: 13%; height: 26%; border-radius: 42% 58% 50% 50% / 58% 42% 58% 42%; filter: blur(2px);
+  background: radial-gradient(closest-side, rgba(150,240,200,.75) 0%, rgba(80,215,190,.6) 60%, rgba(40,150,170,.4) 85%, rgba(40,150,170,0) 100%); }
+.hs-bloom .b4 { left: 52%; top: 22%; width: 14%; height: 34%; border-radius: 55% 45% 38% 62% / 50% 50% 50% 50%; filter: blur(3px);
+  background: radial-gradient(closest-side, rgba(20,70,150,.85) 0%, rgba(30,95,170,.6) 60%, rgba(30,95,170,0) 100%); }
+.hs-bloom .b5 { left: 66%; top: 22%; width: 16%; height: 28%; border-radius: 50%; filter: blur(26px);
+  background: radial-gradient(closest-side, rgba(255,255,255,.6) 0%, rgba(255,255,255,0) 100%); }
+/* Contact shadows along the feet line: ambient spread, mid shadow, tight occlusion */
+.hs-shadow { pointer-events: none; }
+.hs-shadow i { position: absolute; display: block; border-radius: 50%; transform: rotate(3.95deg); }
+.hs-shadow .s1 { left: 43.8%; top: 72.5%; width: 52%; height: 8%; filter: blur(18px);
+  background: radial-gradient(closest-side, rgba(6,26,56,.5) 0%, rgba(6,26,56,.24) 55%, rgba(6,26,56,0) 100%); }
+.hs-shadow .s2 { left: 46.3%; top: 73.85%; width: 47%; height: 3.5%; filter: blur(7px);
+  background: radial-gradient(closest-side, rgba(4,20,44,.7) 0%, rgba(4,20,44,.4) 60%, rgba(4,20,44,0) 100%); }
+.hs-shadow .s3 { left: 47.9%; top: 74.2%; width: 44%; height: 1.6%; filter: blur(2.5px);
+  background: radial-gradient(closest-side, rgba(2,12,28,.85) 0%, rgba(2,12,28,.5) 70%, rgba(2,12,28,0) 100%); }
+@media (max-width: 1100px) { .hs-bloom, .hs-shadow, .hs-floor { display: none; } }
+
+
+/* Contract sheets around the printers (static) */
+.hs-papers { pointer-events: none; }
+.hs-papers .pp { position: absolute; aspect-ratio: 210 / 297; }
+.hs-papers .sheet { position: relative; width: 100%; height: 100%; border-radius: 2px; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; gap: 9%; padding: 16% 11% 12%; box-sizing: border-box;
+  background: linear-gradient(155deg, #ffffff 0%, #f3f7fa 55%, #dfe8ee 100%);
+  box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 10px 22px -8px rgba(4,30,70,.5);
+  transform: rotate(var(--r)); }
+.hs-papers .d0 .sheet { filter: blur(1.4px); opacity: .8; }
+.hs-papers .d1 .sheet { filter: blur(.3px); }
+/* the word, struck through */
+.hs-papers .ct { position: relative; font-family: var(--font); font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: #2b3038;
+  font-size: calc(100cqw * .00118 * var(--w, 6)); line-height: 1; white-space: nowrap; }
+.hs-papers .ct::after { content: ""; position: absolute; left: -10%; right: -10%; top: 50%; height: max(2.5px, .2em); border-radius: 2px;
+  background: #3f4449; transform: rotate(-7deg); transform-origin: 0 50%; }
+.hs-papers .ln { flex: 1; width: 100%;
+  background: repeating-linear-gradient(180deg, rgba(60,70,85,.28) 0 2px, transparent 2px 9%); background-size: 100% 100%;
+  -webkit-mask: linear-gradient(90deg, #000 0 78%, transparent 78% 100%); mask: linear-gradient(90deg, #000 0 78%, transparent 78% 100%); opacity: .7; }
+.hs-papers .ln-full { margin-top: 6%; }
+@media (max-width: 1100px) { .hs-papers { display: none; } }
+
+
+/* Mobile/tablet hero printers: grounded with a floor glow and contact shadows (feet line ~ (3%,78.8%) to (96%,92.1%) of the image) */
+.hero-art-wrap { display: none; }
+@media (max-width: 1100px) {
+  .hero-art-wrap { display: block; position: relative; width: min(100%, 640px); margin: 4px auto 0; isolation: isolate; }
+  .hero-art-wrap .hero-art { position: relative; z-index: 2; display: block; width: 100%; height: auto; margin: 0; -webkit-mask-image: linear-gradient(183.9deg, #000 0%, #000 87.5%, transparent 91.5%); mask-image: linear-gradient(183.9deg, #000 0%, #000 87.5%, transparent 91.5%); }
+  .hero-art-wrap i { position: absolute; display: block; border-radius: 50%; pointer-events: none; transform: rotate(3.9deg); }
+  .hero-art-wrap .ha-floor { z-index: 0; left: -8%; width: 116%; top: 70%; height: 36%; transform: none;
+    background: radial-gradient(closest-side, rgba(230,248,255,.5) 0%, rgba(210,242,252,.22) 55%, rgba(210,242,252,0) 100%); }
+  /* the image carries a soft baked shadow, so these sit on top of it, just below the wheels */
+  .hero-art-wrap .ha-s1 { z-index: 3; mix-blend-mode: multiply; left: 0; width: 100%; top: 84%; height: 13%; filter: blur(8px);
+    background: radial-gradient(closest-side, rgba(10,40,80,.55) 0%, rgba(10,40,80,.25) 55%, rgba(10,40,80,0) 100%); }
+  .hero-art-wrap .ha-s2 { z-index: 3; mix-blend-mode: multiply; left: 2.5%; width: 95%; top: 83.6%; height: 6%; filter: blur(3px);
+    background: radial-gradient(closest-side, rgba(8,28,60,.7) 0%, rgba(8,28,60,.4) 60%, rgba(8,28,60,0) 100%); }
+  .hero-art-wrap .ha-s3 { z-index: 3; mix-blend-mode: multiply; left: 3.5%; width: 93%; top: 83.6%; height: 3%; filter: blur(1px);
+    background: radial-gradient(closest-side, rgba(4,16,36,.85) 0%, rgba(4,16,36,.5) 70%, rgba(4,16,36,0) 100%); }
+}
+/* Hero buttons keep their natural size on mobile (only the plan finder buttons go full width) */
+@media (max-width: 860px) { .hero-actions .btn-next { width: auto; justify-content: flex-start; } }
 
 /* Glow pill */
 .glow-btn { --prox: 0; --ang: 90deg; position: relative; isolation: isolate; display: inline-flex; align-items: center; justify-content: center; padding: 17px 30px; border-radius: 100px; color: var(--slate); font-size: 17px; font-weight: 600; }
@@ -210,7 +360,10 @@ button, input, select { font-family: var(--font); }
 .glow-btn .halo { inset: -14px; z-index: -1; background: conic-gradient(from var(--ang), var(--cyan), var(--green), var(--orange), var(--red), var(--cyan)); filter: blur(16px); opacity: calc(var(--prox) / 100 * .6); }
 .glow-btn .base { inset: 0; z-index: -1; background: var(--white); border: 1px solid rgba(30,30,33,.14); box-shadow: 0 12px 26px -14px rgba(30,30,33,.3); }
 .glow-btn .ring { inset: 0; z-index: 0; border: 2px solid transparent; background: conic-gradient(from var(--ang), var(--cyan), var(--green), var(--orange), var(--red), var(--cyan)) border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: calc(var(--prox) / 100); }
-.glow-btn b { position: relative; z-index: 1; font-weight: 600; }
+.glow-btn b { position: relative; z-index: 1; font-weight: 600; display: inline-flex; align-items: center; gap: 16px; }
+.glow-btn:has(.arr) { padding: 17px 20px 17px 30px; }
+.glow-btn .arr { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--slate); color: var(--white); font-size: 17px; transition: transform 800ms var(--breathe); }
+.glow-btn:hover .arr { transform: translateX(4px); }
 @media (hover: none) { .glow-btn .halo, .glow-btn .ring { display: none; } }
 
 /* ================= FLEXIBILITY ================= */
@@ -228,7 +381,7 @@ button, input, select { font-family: var(--font); }
 
 /* ================= SOLUTIONS (editorial timeline) ================= */
 .sol-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.sol-tag { display: inline-flex; align-items: center; font-size: 12.5px; font-weight: 600; padding: 7px 15px; border-radius: 100px; background: var(--ctint); color: var(--cdeep); cursor: pointer; border: 0; font-family: var(--font); transition: transform 350ms var(--breathe), box-shadow 350ms var(--breathe); }
+.sol-tag { display: inline-flex; align-items: center; font-size: 12.5px; font-weight: 600; padding: 7px 15px; border-radius: 100px; background: var(--ctint); color: var(--cdeep); transition: transform 350ms var(--breathe), box-shadow 350ms var(--breathe); }
 .sol-tag:hover { transform: translateY(-2px); box-shadow: 0 10px 18px -12px rgba(30,30,33,.35); }
 .tl { position: relative; display: flex; flex-direction: column; gap: clamp(30px, 3.6vw, 44px); padding-left: 42px; }
 .tl-spine { position: absolute; left: 7px; top: 8px; height: calc(100% - 16px); width: 2px; pointer-events: none; }
@@ -238,9 +391,9 @@ button, input, select { font-family: var(--font); }
 .tl-seg i { position: absolute; display: block; top: 0; height: 100%; background: var(--c); }
 .seg-glow { left: -39px; width: 10px; border-radius: 5px; filter: blur(5px); opacity: .16; }
 .seg-fill { left: -35px; width: 2px; border-radius: 2px; opacity: .85; }
-.tl-dot { position: absolute; z-index: 1; left: -42px; top: 7px; width: 16px; height: 16px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 5px var(--white), 0 0 7px 0px color-mix(in srgb, var(--c) 30%, transparent); transition: transform 380ms var(--breathe), box-shadow 380ms var(--breathe); }
+.tl-dot { position: absolute; z-index: 1; left: -42px; top: 7px; width: 16px; height: 16px; border-radius: 50%; background: #dcdee1; box-shadow: 0 0 0 5px var(--white), 0 0 7px 0px color-mix(in srgb, var(--c) 30%, transparent); transition: background-color 350ms ease-out, transform 350ms ease-out, box-shadow 350ms ease-out; }
 .tl-row:hover .tl-dot { box-shadow: 0 0 0 5px var(--white), 0 0 10px 1px color-mix(in srgb, var(--c) 40%, transparent); }
-.tl-dot::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1.5px solid var(--c); opacity: .4; animation: tl-pulse 2.6s var(--breathe) infinite; animation-delay: var(--pd,0s); }
+.tl-dot::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1.5px solid var(--c); opacity: 0; }
 @keyframes tl-pulse { 0% { transform: scale(.75); opacity: .55; } 70%, 100% { transform: scale(1.8); opacity: 0; } }
 .tl-content { padding: 14px 18px 16px 22px; margin-left: -22px; border-radius: 18px; transition: background 420ms var(--breathe); }
 .tl-row:hover .tl-content { background: var(--ctint); }
@@ -250,24 +403,17 @@ button, input, select { font-family: var(--font); }
 .tl-row h3 { margin: 0 0 10px; font-size: clamp(22px, 2.3vw, 30px); font-weight: 600; letter-spacing: -.025em; color: var(--slate); transition: transform 420ms var(--breathe); }
 .tl-row:hover h3 { transform: translateX(5px); }
 .tl-row p { margin: 0 0 14px; font-size: 15.5px; line-height: 1.6; font-weight: 300; color: var(--muted); max-width: 64ch; }
-@media (max-width: 600px) { .tl { padding-left: 30px; } .tl-spine { left: 5px; } .tl-dot { left: -30px; width: 13px; height: 13px; } .tl-content { margin-left: 0; padding-left: 4px; } .seg-glow { left: -27px; } .seg-fill { left: -23px; } }
-/* Scroll-linked progress (Flightec-style): dots start grey and light up in
-   their own colour the moment the line's tip reaches them; scrolling back
-   up unwinds it. JS toggles .is-active on each .tl-row. */
-.tl-dot { background: #dcdee1; }
-.tl-dot::after { animation: none; opacity: 0; }
+@media (max-width: 600px) { .tl { padding-left: 30px; } .tl-spine { left: 5px; } .tl-dot { left: -30px; width: 13px; height: 13px; } .tl-content { margin-left: 0; padding-left: 4px; } .seg-glow { left: -29px; } .seg-fill { left: -25px; } }
+/* Scroll-linked progress: dots start grey and light up in their own colour
+   the moment the line's tip reaches them; scrolling back up unwinds it.
+   JS toggles .is-active on each .tl-row. */
 .tl-row.is-active .tl-dot { background: var(--c); transform: scale(1.15); box-shadow: 0 0 0 5px var(--white), 0 0 0 9px color-mix(in srgb, var(--c) 16%, transparent), 0 0 22px color-mix(in srgb, var(--c) 45%, transparent); transition: background-color 350ms ease-out, transform 350ms ease-out, box-shadow 350ms ease-out; }
 .tl-row.is-active .tl-dot::after { animation: tl-pulse 2.6s var(--breathe) infinite; }
 .tl-row.is-active:hover .tl-dot { transform: scale(1.3); }
-.tl-dot { transition: background-color 350ms ease-out, transform 350ms ease-out, box-shadow 350ms ease-out; }
-@media (max-width: 600px) { .seg-glow { left: -29px; } .seg-fill { left: -25px; } }
 @media (prefers-reduced-motion: reduce) { .tl-seg { transition: none !important; } .tl-row.is-active .tl-dot { transform: none; } .tl-dot::after { animation: none !important; opacity: .3; } .tl-row h3, .tl-num, .tl-dot, .tl-content { transition: none !important; } }
 
 /* ================= PLAN FINDER (full bleed) ================= */
 .pf { background: var(--section); padding-block: var(--band); }
-.pf-inner { width: 100%; }
-
-/* ---------- Section intro ---------- */
 
 /* ---------- The stack ---------- */
 .stack { position: relative; height: clamp(780px, 92vh, 900px); overflow: hidden; isolation: isolate; border-radius: 32px; box-shadow: 0 50px 100px -60px rgba(30,30,33,.55); }
@@ -311,7 +457,6 @@ button, input, select { font-family: var(--font); }
   transition: opacity 420ms ease 120ms;
 }
 .card:not(.is-active) .card-body { opacity: .28; transition-delay: 0ms; }
-
 
 .card[data-i="1"] .atmos i, .card[data-i="2"] .atmos i { opacity: .16; }
 .card[data-i="2"] .atmos i:nth-child(2) { background: var(--red); opacity: .08; }
@@ -369,10 +514,6 @@ button, input, select { font-family: var(--font); }
 .detail-img { flex: 1 1 auto; min-height: 150px; border-radius: 26px; overflow: hidden; background: #2b2b2f; }
 .detail-img img { width: 100%; height: 100%; object-fit: cover; display: block; max-width: 100%; }
 
-.btn-next[aria-disabled="true"] { background: rgba(87,90,97,.1); color: rgba(87,90,97,.5); box-shadow: none; cursor: not-allowed; }
-.btn-next[aria-disabled="true"] .arr { background: rgba(87,90,97,.3); }
-.btn-next[aria-disabled="true"]:hover .arr { transform: none; }
-
 /* Empty prompt (team + plan cards) */
 .prompt { display: flex; flex-direction: column; justify-content: center; gap: 12px; height: 100%; max-width: 40ch; }
 .prompt[hidden] { display: none; }
@@ -394,6 +535,9 @@ button, input, select { font-family: var(--font); }
 .facts li b { font-weight: 600; color: var(--slate); text-align: right; }
 .facts li span { color: var(--slate); font-weight: 400; }
 .spacer { flex: 1; }
+.next-row { display: flex; align-items: center; justify-content: flex-end; gap: 14px 24px; flex-wrap: wrap; margin-top: auto; }
+.next-row .terms { margin-right: auto; }
+.detail-col > .prompt { flex: 1 1 auto; height: auto; }
 
 /* Plans */
 .plan-feats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px 22px; }
@@ -443,11 +587,11 @@ button, input, select { font-family: var(--font); }
   .detail.is-open > *, .atmos i, .prompt .back-arrow { animation: none !important; }
 }
 
-
 /* ================= FAQ ================= */
 .faq-list { border-top: 1px solid var(--hair); }
 .faq-item { border-bottom: 1px solid var(--hair); }
 .faq-q { width: 100%; display: grid; grid-template-columns: 104px 1fr auto; align-items: center; gap: 12px; padding: 28px 2px; border: 0; background: transparent; color: var(--slate); cursor: pointer; text-align: left; font-size: var(--t-row); font-weight: 500; letter-spacing: -.025em; line-height: 1.15; transition: opacity 700ms var(--breathe); }
+.faq-q .faq-text { min-width: 0; }
 .faq-q small { font-size: 12.5px; font-weight: 800; letter-spacing: .14em; color: var(--muted); }
 .faq-item:nth-of-type(1) .faq-q small { color: var(--cyan); }
 .faq-item:nth-of-type(2) .faq-q small { color: var(--green); }
@@ -514,7 +658,6 @@ button, input, select { font-family: var(--font); }
 .rev-nav { display: flex; flex-direction: column; border-top: 1px solid var(--hair); }
 .rev-tab { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 18px 0; border: 0; border-bottom: 1px solid var(--hair); background: transparent; cursor: pointer; text-align: left; color: var(--slate); transition: opacity 700ms var(--breathe); position: relative; }
 .rev-tab b { font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
-.rev-tab span { font-size: 13.5px; color: var(--muted); grid-column: 1; }
 .rev-tab i { grid-row: 1 / span 2; grid-column: 2; font-style: normal; font-size: 18px; color: var(--c); opacity: 0; transform: translateX(-8px); transition: opacity 300ms ease, transform 380ms var(--ease); }
 .rev-tab::before { content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: 0; background: var(--c); transition: width 520ms var(--ease); }
 .rev-nav.has-open .rev-tab[aria-selected="false"] { opacity: .45; }
@@ -531,7 +674,6 @@ button, input, select { font-family: var(--font); }
 .rev-quote figcaption { display: flex; align-items: center; gap: 18px; font-size: 15px; color: var(--muted); }
 .rev-quote figcaption b { color: var(--slate); font-weight: 600; font-size: 16px; }
 .stars { color: var(--orange); letter-spacing: .1em; }
-@keyframes drift-in { 0% { opacity: 0; transform: translateX(-28px); filter: blur(10px); } 60% { opacity: 1; filter: blur(0); } 100% { opacity: 1; transform: none; filter: none; } }
 @media (max-width: 860px) { .rev { grid-template-columns: 1fr; } .rev-stage { min-height: 0; order: -1; } }
 
 /* ================= BRANCHES (rows) ================= */
@@ -572,7 +714,7 @@ button, input, select { font-family: var(--font); }
 .field--full { grid-column: 1 / -1; }
 .field label { font-size: 12.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .field label em { font-style: normal; font-weight: 500; letter-spacing: 0; text-transform: none; }
-.field input, .field select { transition: border-color 600ms var(--breathe) !important; width: 100%; border: 0; border-bottom: 1.5px solid #d3dade; border-radius: 0; padding: 11px 0 13px; font-size: 18.5px; color: var(--slate); background: transparent; transition: border-color 240ms ease; }
+.field input, .field select { width: 100%; border: 0; border-bottom: 1.5px solid #d3dade; border-radius: 0; padding: 11px 0 13px; font-size: 18.5px; color: var(--slate); background: transparent; transition: border-color 600ms var(--breathe); }
 .field select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 10px) 55%, calc(100% - 5px) 55%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 26px; cursor: pointer; }
 .field input::placeholder { color: #a3abb1; }
 .field input:focus, .field select:focus { outline: none; border-color: var(--cyan); }
@@ -580,11 +722,9 @@ button, input, select { font-family: var(--font); }
 .field .err { font-size: 13.5px; color: var(--red); }
 .field .err:empty { display: none; }
 .form-card .btn-next { width: 100%; justify-content: space-between; margin-top: 4px; }
-.demo-note { font-size: 13px; line-height: 1.5; color: var(--muted); }
-.form-status { font-size: 13.5px; line-height: 1.5; color: var(--red); }
-.form-status:empty { display: none; }
-#quoteForm { position: relative; }
-.btn-next[aria-busy="true"] { opacity: .6; pointer-events: none; }
+.form-error { font-size: 14.5px; line-height: 1.5; color: var(--red); }
+.form-error[hidden] { display: none; }
+.form-card .btn-next[aria-busy="true"] { opacity: .6; pointer-events: none; }
 .form-sent { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; padding: 8px 0; }
 .form-sent[hidden] { display: none; }
 .form-sent .brand-rule { width: 72px; }
@@ -601,7 +741,6 @@ button, input, select { font-family: var(--font); }
 .foot-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; padding-block: 28px; border-top: 1px solid var(--hair); }
 .foot-top img { height: 24px; width: auto; display: block; }
 .foot-links { display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 15.5px; font-weight: 500; color: var(--slate); }
-.foot-links a:hover { color: var(--slate); }
 .foot-social { display: flex; align-items: center; gap: 16px; }
 .foot-social a { display: flex; align-items: center; justify-content: center; color: var(--muted); transition: color 240ms ease; }
 .foot-social a:hover { color: var(--slate); }
@@ -609,8 +748,15 @@ button, input, select { font-family: var(--font); }
 .foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 20px 28px; border-top: 1px solid var(--hair); font-size: 13.5px; color: var(--muted); line-height: 1.5; }
 .foot-bottom div:last-child { flex-basis: 100%; }
 
-.wa { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 200; display: flex; align-items: center; padding: 7px; border-radius: 100px; background: rgba(30,30,33,.86); color: var(--white); border: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); box-shadow: 0 18px 40px -18px rgba(10,10,12,.6), inset 0 1px 0 rgba(255,255,255,.08); transform: translateY(0); opacity: 1; transition: transform 900ms var(--breathe), opacity 700ms var(--breathe), box-shadow 800ms var(--breathe); }
-.wa.is-hidden { transform: translateY(calc(100% + 40px)); opacity: 0; pointer-events: none; }
+/* ================= PLATFORM CREDIT (under the footer) ================= */
+/* Hanken Grotesk (SIL OFL), subset to just the characters in this line */
+@font-face { font-family: "CA Credit"; font-weight: 400; font-display: swap; src: url(data:font/woff2;base64,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) format("woff2"); }
+@font-face { font-family: "CA Credit"; font-weight: 600; font-display: swap; src: url(data:font/woff2;base64,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) format("woff2"); }
+.ca-credit { box-sizing: content-box; min-height: 35px; display: flex; align-items: center; justify-content: center; padding: 2px 16px env(safe-area-inset-bottom, 0px); background: #0e0e0f; border-top: 1px solid #000; box-shadow: inset 0 1px 0 #1b1b1d; font-family: "CA Credit", var(--font); font-size: 12px; font-weight: 400; line-height: 1; letter-spacing: 0; color: #c8ccd2; text-align: center; }
+.ca-credit b { font-weight: 600; color: #fff; }
+@media (max-width: 359px) { .ca-credit { line-height: 1.4; padding-top: 8px; padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)); } }
+
+.wa { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 200; display: flex; align-items: center; padding: 7px; border-radius: 100px; background: rgba(30,30,33,.86); color: var(--white); border: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); box-shadow: 0 18px 40px -18px rgba(10,10,12,.6), inset 0 1px 0 rgba(255,255,255,.08); transition: box-shadow 800ms var(--breathe); }
 .wa-icon { position: relative; flex: none; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 30% 25%, #8fdc6e 0%, var(--green) 55%, #4fa52f 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.35); }
 .wa-icon svg { width: 22px; height: 22px; fill: #ffffff; }
 .wa-icon::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1.5px solid rgba(108,194,74,.55); animation: wa-ring 3.2s var(--breathe) infinite; }
@@ -619,8 +765,6 @@ button, input, select { font-family: var(--font); }
 .wa-label > span { overflow: hidden; white-space: nowrap; display: flex; flex-direction: column; gap: 1px; opacity: 0; transition: opacity 500ms var(--breathe); }
 .wa-label b { font-size: 14.5px; font-weight: 600; padding: 0 18px 0 14px; }
 .wa-label small { font-size: 12px; color: var(--on-dark-muted); padding: 0 18px 0 14px; }
-.wa.is-open .wa-label { grid-template-columns: 1fr; }
-.wa.is-open .wa-label > span { opacity: 1; transition: opacity 700ms var(--breathe) 250ms; }
 .wa:hover { box-shadow: 0 24px 50px -18px rgba(10,10,12,.7), inset 0 1px 0 rgba(255,255,255,.1); }
 .wa:hover .wa-label { grid-template-columns: 1fr; }
 .wa:hover .wa-label > span { opacity: 1; }
@@ -673,17 +817,28 @@ button, input, select { font-family: var(--font); }
 <main>
   <!-- HERO -->
   <section class="hero" id="top">
-    <div class="hero-bg"><img data-asset="hero" alt=""></div>
+    <div class="hero-veil" aria-hidden="true"></div>
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-scene">
+        <div class="hs-layer hs-wash"><i class="p1"></i><i class="p2"></i><i class="p7"></i><i class="p5"></i><i class="p3"></i><i class="p6"></i><i class="p4"></i><i class="p8"></i><span class="tex"></span><span class="grain"></span></div>
+        <div class="hs-layer hs-floor"></div>
+        <div class="hs-layer hs-bloom"><div class="ink"><i class="b4"></i><i class="b1"></i><i class="b2"></i><i class="b3"></i></div><i class="b5"></i><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="hs-ink" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="4" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="110" xChannelSelector="R" yChannelSelector="G"/></filter></svg></div>
+        <div class="hs-layer hs-shadow"><i class="s1"></i><i class="s2"></i><i class="s3"></i></div>
+        <div class="hs-layer hs-printers"><img data-asset="heroPrinters" alt=""></div>
+        <div class="hs-layer hs-papers" aria-hidden="true"><div class="pp d2" style="left:56.5%;top:21%;width:6.4%;--w:6.4;--r:-16deg"><div class="sheet"><b class="ct">Contract</b><span class="ln"></span></div></div><div class="pp d2" style="left:80.5%;top:17%;width:5.6%;--w:5.6;--r:20deg"><div class="sheet"><b class="ct">Contract</b><span class="ln"></span></div></div><div class="pp d1" style="left:65.5%;top:18%;width:4.3%;--w:4.3;--r:7deg"><div class="sheet"><b class="ct">Contract</b><span class="ln"></span></div></div><div class="pp d1" style="left:61%;top:34%;width:3.5%;--w:3.5;--r:28deg"><div class="sheet"><span class="ln ln-full"></span></div></div><div class="pp d1" style="left:75%;top:32%;width:3.0%;--w:3.0;--r:-22deg"><div class="sheet"><span class="ln ln-full"></span></div></div><div class="pp d0" style="left:71%;top:26%;width:2.5%;--w:2.5;--r:-34deg"><div class="sheet"><span class="ln ln-full"></span></div></div><div class="pp d0" style="left:88.5%;top:30%;width:2.3%;--w:2.3;--r:48deg"><div class="sheet"><span class="ln ln-full"></span></div></div><div class="pp d0" style="left:52%;top:15%;width:2.1%;--w:2.1;--r:-12deg"><div class="sheet"><span class="ln ln-full"></span></div></div><div class="pp d1" style="left:92.5%;top:23%;width:3.4%;--w:3.4;--r:-26deg"><div class="sheet"><span class="ln ln-full"></span></div></div></div>
+      </div>
+    </div>
     <div class="hero-main">
       <div class="wrap" style="width:100%">
         <div class="hero-copy">
           <div class="eyebrow">Month-to-month freedom from long-term contracts</div>
-          <h1>designed for<br>zero risk<img data-asset="logoMark" alt="." class="logo-dot"></h1>
-          <p class="hero-sub">Flexible business technology solutions with <b>Month-to-Month agreements</b>, <b>zero long-term risk</b>, and <b>nationwide support</b>. Backed by expert advice, a <b>free cost-saving analysis</b>, and over 50 years of experience helping South African businesses work smarter.</p>
+          <h1>designed for<br>zero risk<img data-asset="logoMark" alt="" class="logo-dot"></h1>
+          <p class="hero-sub">Flexible business technology solutions with <b><span class="nw">Month-to-Month</span> agreements</b>, <b>zero <span class="nw">long-term</span> risk</b>, and <b>nationwide support</b>. Backed by expert advice, a <b>free <span class="nw">cost-saving</span> analysis</b>, and over 50 years of experience helping South African businesses work smarter.</p>
           <div class="hero-actions">
             <a class="btn-next" href="#quote">browse solutions <span class="arr" aria-hidden="true">→</span></a>
-            <a class="glow-btn" href="#plans" data-glow><span class="halo" aria-hidden="true"></span><span class="base" aria-hidden="true"></span><span class="ring" aria-hidden="true"></span><b>printer plans</b></a>
+            <a class="glow-btn" href="#plans" data-glow><span class="halo" aria-hidden="true"></span><span class="base" aria-hidden="true"></span><span class="ring" aria-hidden="true"></span><b>printer plans <span class="arr" aria-hidden="true">→</span></b></a>
           </div>
+          <div class="hero-art-wrap"><img class="hero-art" data-asset="heroPrinters" alt="Seartec multifunction printers"><i class="ha-floor"></i><i class="ha-s1"></i><i class="ha-s2"></i><i class="ha-s3"></i></div>
         </div>
       </div>
     </div>
@@ -704,13 +859,13 @@ button, input, select { font-family: var(--font); }
       <div class="sec-head" data-reveal>
         <div class="eyebrow">Why Seartec</div>
         <h2 class="h2" id="why-title">Designed for <span>flexibility.</span></h2>
-        <p class="lede">Every Seartec agreement runs <b>Month-to-Month</b>. Scale up, scale down, swap devices or walk away on <b>30 days notice</b>.</p>
+        <p class="lede">Every Seartec agreement runs <b><span class="nw">Month-to-Month</span></b>. Scale up, scale down, swap devices or walk away on <b>30 days’ notice</b>.</p>
       </div>
       <div class="pillars" data-reveal>
-        <div class="pillar" style="--c:var(--cyan)"><small>Risk</small><h3>Zero risk</h3><p>No escalations, no penalties, no 36 or 60-month tie-in. Thirty days notice is all we ask.</p></div>
+        <div class="pillar" style="--c:var(--cyan)"><small>Risk</small><h3>Zero risk</h3><p>No escalations, no penalties, no 36- or 60-month tie-in. Thirty days’ notice is all we ask.</p></div>
         <div class="pillar" style="--c:var(--green)"><small>Service</small><h3>Everything included</h3><p>Free delivery, installation, configuration and a training session for your team.</p></div>
         <div class="pillar" style="--c:var(--orange)"><small>Pricing</small><h3>Sized on facts</h3><p>A free cost-saving analysis of what you print today, before anyone quotes you.</p></div>
-        <div class="pillar" style="--c:var(--red)"><small>Track record</small><h3>Since 1968</h3><p>Over fifty years in South African office automation, part of JSE-listed Deneb Investments.</p></div>
+        <div class="pillar" style="--c:var(--red)"><small>Track record</small><h3>Since 1968</h3><p>Over 50 years in South African office automation, part of JSE-listed Deneb Investments.</p></div>
       </div>
     </div>
   </section>
@@ -725,45 +880,45 @@ button, input, select { font-family: var(--font); }
       </header>
 
       <div class="tl">
-        <div class="tl-spine" aria-hidden="true"><i class="spine-track"></i></div>
-        <article class="tl-row" data-reveal style="--c:var(--cyan);--ctint:rgba(0,175,215,.12);--pd:0s">
+        <div class="tl-spine" aria-hidden="true"><i></i></div>
+        <article class="tl-row" data-reveal style="--c:var(--cyan);--ctint:rgba(0,175,215,.12)">
           <span class="tl-dot"></span>
           <span class="tl-seg" aria-hidden="true"><i class="seg-glow"></i><i class="seg-fill"></i></span>
           <div class="tl-content">
             <span class="tl-num">01 — Printing</span>
             <h3>Printing Solutions</h3>
             <p>Flexible printing and office automation solutions tailored to the way your business operates. From desktop printers and multifunction devices to fully managed print services, we help organisations improve efficiency, control costs, and access the latest technology without long-term commitments.</p>
-            <div class="sol-tags"><a class="sol-tag" href="#quote" data-help="Printing and multifunction devices" style="--ctint:rgba(0,175,215,.12);--cdeep:var(--cyan-deep)">Printers &amp; Copiers</a></div>
+            <div class="sol-tags"><a class="sol-tag" href="https://www.seartec.co.za/products" target="_blank" rel="noopener" style="--ctint:rgba(0,175,215,.12);--cdeep:var(--cyan-deep)">Printers &amp; Copiers</a></div>
           </div>
         </article>
 
-        <article class="tl-row" data-reveal style="--c:var(--green);--ctint:rgba(108,194,74,.16);--pd:.5s">
+        <article class="tl-row" data-reveal style="--c:var(--green);--ctint:rgba(108,194,74,.16)">
           <span class="tl-dot"></span>
           <span class="tl-seg" aria-hidden="true"><i class="seg-glow"></i><i class="seg-fill"></i></span>
           <div class="tl-content">
             <span class="tl-num">02 — Digitisation</span>
             <h3>Document Digitisation Solutions</h3>
             <p>Transform paper-based processes into secure, searchable digital workflows. Our document digitisation and workflow automation solutions help businesses improve accessibility, strengthen compliance, reduce manual administration, and accelerate information retrieval.</p>
-            <div class="sol-tags"><a class="sol-tag" href="#quote" data-help="Scanning and document workflows" style="--ctint:rgba(108,194,74,.16);--cdeep:var(--green-deep)">Scanners</a></div>
+            <div class="sol-tags"><a class="sol-tag" href="https://www.seartec.co.za/products" target="_blank" rel="noopener" style="--ctint:rgba(108,194,74,.16);--cdeep:var(--green-deep)">Scanners</a></div>
           </div>
         </article>
 
-        <article class="tl-row" data-reveal style="--c:var(--orange);--ctint:rgba(255,103,31,.14);--pd:1s">
+        <article class="tl-row" data-reveal style="--c:var(--orange);--ctint:rgba(255,103,31,.14)">
           <span class="tl-dot"></span>
           <span class="tl-seg" aria-hidden="true"><i class="seg-glow"></i><i class="seg-fill"></i></span>
           <div class="tl-content">
             <span class="tl-num">03 — Visual display</span>
             <h3>Visual Display Solutions</h3>
-            <p>Create engaging, collaborative environments with professional display technology for meeting rooms, classrooms, retail environments, and public spaces. Projectors, interactive screens and budget display solutions &mdash; we help organisations and education institutions communicate more effectively and enhance user experiences.</p>
+            <p>Create engaging, collaborative environments with professional display technology for meeting rooms, classrooms, retail environments, and public spaces. Projectors, interactive screens and budget display solutions &mdash; we help organisations and educational institutions communicate more effectively and enhance user experiences.</p>
             <div class="sol-tags">
-              <a class="sol-tag" href="#quote" data-help="Projectors and display solutions" style="--ctint:rgba(255,103,31,.14);--cdeep:var(--orange-deep)">Projectors</a>
-              <a class="sol-tag" href="#quote" data-help="Projectors and display solutions" style="--ctint:rgba(255,103,31,.14);--cdeep:var(--orange-deep)">Interactive screens</a>
-              <a class="sol-tag" href="#quote" data-help="Projectors and display solutions" style="--ctint:rgba(255,103,31,.14);--cdeep:var(--orange-deep)">Budget displays</a>
+              <a class="sol-tag" href="https://www.seartec.co.za/products" target="_blank" rel="noopener" style="--ctint:rgba(255,103,31,.14);--cdeep:var(--orange-deep)">Projectors</a>
+              <a class="sol-tag" href="https://www.seartec.co.za/products" target="_blank" rel="noopener" style="--ctint:rgba(255,103,31,.14);--cdeep:var(--orange-deep)">Interactive screens</a>
+              <a class="sol-tag" href="https://www.seartec.co.za/products" target="_blank" rel="noopener" style="--ctint:rgba(255,103,31,.14);--cdeep:var(--orange-deep)">Budget displays</a>
             </div>
           </div>
         </article>
 
-        <article class="tl-row" data-reveal style="--c:var(--red);--ctint:rgba(228,0,43,.12);--pd:1.5s">
+        <article class="tl-row" data-reveal style="--c:var(--red);--ctint:rgba(228,0,43,.12)">
           <span class="tl-dot"></span>
           <span class="tl-seg" aria-hidden="true"><i class="seg-glow"></i><i class="seg-fill"></i></span>
           <div class="tl-content">
@@ -771,20 +926,20 @@ button, input, select { font-family: var(--font); }
             <h3>Print Management Software</h3>
             <p>Gain visibility and control over your print environment with intelligent print management solutions. Monitor usage, allocate costs, improve security, reduce waste, and implement print policies that support both productivity and sustainability goals.</p>
             <div class="sol-tags">
-              <a class="sol-tag" href="#quote" data-help="Print management and reporting software" style="--ctint:rgba(228,0,43,.12);--cdeep:var(--red-deep)">MyQ software</a>
-              <a class="sol-tag" href="#quote" data-help="Print management and reporting software" style="--ctint:rgba(228,0,43,.12);--cdeep:var(--red-deep)">Papercut software</a>
+              <a class="sol-tag" href="https://www.seartec.co.za/products" target="_blank" rel="noopener" style="--ctint:rgba(228,0,43,.12);--cdeep:var(--red-deep)">MyQ software</a>
+              <a class="sol-tag" href="https://www.seartec.co.za/products" target="_blank" rel="noopener" style="--ctint:rgba(228,0,43,.12);--cdeep:var(--red-deep)">PaperCut software</a>
             </div>
           </div>
         </article>
 
-        <article class="tl-row" data-reveal style="--c:var(--support-green);--ctint:rgba(27,165,83,.14);--pd:2s">
+        <article class="tl-row" data-reveal style="--c:var(--support-green);--ctint:rgba(27,165,83,.14)">
           <span class="tl-dot"></span>
           <span class="tl-seg" aria-hidden="true"><i class="seg-glow"></i><i class="seg-fill"></i></span>
           <div class="tl-content">
             <span class="tl-num">05 — Support</span>
             <h3>Consumables &amp; Support</h3>
             <p>Keep your devices operating at peak performance with genuine printer consumables, replacement parts, and expert technical support. From toner, ink, drums, and maintenance kits to nationwide servicing and repairs, Seartec provides everything you need to maximise uptime, reduce disruptions, and extend the life of your technology investment.</p>
-            <div class="sol-tags"><a class="sol-tag" href="#quote" data-help="Servicing and technical support" style="--ctint:rgba(27,165,83,.14);--cdeep:var(--support-green)">Consumables</a></div>
+            <div class="sol-tags"><a class="sol-tag" href="https://www.seartec.co.za/products" target="_blank" rel="noopener" style="--ctint:rgba(27,165,83,.14);--cdeep:var(--support-green)">Consumables</a></div>
           </div>
         </article>
       </div>
@@ -876,19 +1031,19 @@ button, input, select { font-family: var(--font); }
       </div>
       <div class="faq-list has-open" id="faqList" data-reveal>
         <div class="faq-item">
-          <button type="button" class="faq-q" aria-expanded="true" aria-controls="faq-a0" id="faq-q0"><small>TERM</small>Month-to-Month means Month-to-Month.<span class="pm" aria-hidden="true"></span></button>
-          <div class="faq-a" id="faq-a0" role="region" aria-labelledby="faq-q0"><div><p>There is no minimum term and no escalation clause. Give 30 days notice and the agreement ends.</p></div></div>
+          <button type="button" class="faq-q" aria-expanded="true" aria-controls="faq-a0" id="faq-q0"><small>TERM</small><span class="faq-text"><span class="nw">Month-to-Month</span> means <span class="nw">Month-to-Month</span>.</span><span class="pm" aria-hidden="true"></span></button>
+          <div class="faq-a" id="faq-a0" role="region" aria-labelledby="faq-q0"><div><p>There is no minimum term and no escalation clause. Give 30 days’ notice and the agreement ends.</p></div></div>
         </div>
         <div class="faq-item">
-          <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1"><small>PRICE</small>Pricing is sized on your volumes.<span class="pm" aria-hidden="true"></span></button>
+          <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1"><small>PRICE</small><span class="faq-text">Pricing is sized on your volumes.</span><span class="pm" aria-hidden="true"></span></button>
           <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div><p>Quotes are built from a free analysis of what you print today, so you are not paying for capacity you never use.</p></div></div>
         </div>
         <div class="faq-item">
-          <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a2" id="faq-q2"><small>DELIVERY</small>Free delivery applies nationwide.<span class="pm" aria-hidden="true"></span></button>
+          <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a2" id="faq-q2"><small>DELIVERY</small><span class="faq-text">Free delivery applies nationwide.</span><span class="pm" aria-hidden="true"></span></button>
           <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2"><div><p>Delivery, installation, configuration and user training are included. Terms and conditions apply.</p></div></div>
         </div>
         <div class="faq-item">
-          <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a3" id="faq-q3"><small>COVER</small>Gap cover is optional.<span class="pm" aria-hidden="true"></span></button>
+          <button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a3" id="faq-q3"><small>COVER</small><span class="faq-text">Gap cover is optional.</span><span class="pm" aria-hidden="true"></span></button>
           <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div><p>An add-on that closes the gap between your service agreement and your insurance, for a fixed monthly amount.</p></div></div>
         </div>
       </div>
@@ -928,11 +1083,13 @@ button, input, select { font-family: var(--font); }
     <div class="wrap">
       <div class="quote-intro" data-reveal>
         <div class="eyebrow">Act now & save</div>
-        <h2 class="h2" id="q-title">Let's size it <span>right for you.</span></h2>
-        <p class="lede">Whether you're looking for printing, document workflow, display technology, or software solutions, our specialists will help you find the best fit for your business. <b>No obligation, free cost-analysis</b> and <b>no long-term contract lock-ins</b>.</p>
+        <h2 class="h2" id="q-title">Let’s size it <span>right for you.</span></h2>
+        <p class="lede">Whether you’re looking for printing, document workflow, display technology, or software solutions, our specialists will help you find the best fit for your business. <b>No obligation, free cost-saving analysis</b> and <b>no long-term contract lock-ins</b>.</p>
       </div>
       <div class="form-card" data-reveal>
-        <form id="quoteForm" novalidate>
+        <form id="quoteForm" action="https://formspree.io/f/FORMSPREE_ID" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="New Seartec quote request">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <h3>Your free cost-saving quote</h3>
           <p>A Seartec specialist will get in touch within one business day.</p>
           <div class="carry" id="carry" role="status"></div>
@@ -959,13 +1116,12 @@ button, input, select { font-family: var(--font); }
             </div>
           </div>
           <button type="submit" class="btn-next">send my quote request <span class="arr" aria-hidden="true">→</span></button>
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-          <div class="form-status" id="formStatus" role="alert" aria-live="assertive"></div>
+          <div class="form-error" id="formError" role="alert" hidden></div>
         </form>
         <div class="form-sent" id="formSent" hidden>
           <div class="brand-rule"><i></i><i></i><i></i><i></i></div>
-          <strong>Thank you. We'll be in touch.</strong>
-          <p id="sentSummary">A Seartec consultant will contact you within one business day with your free cost-saving comparison.</p>
+          <strong>Thank you. We’ll be in touch.</strong>
+          <p id="sentSummary">A Seartec specialist will contact you within one business day with your free cost-saving analysis.</p>
           <button type="button" class="btn-line" id="sendAnother">send another</button>
         </div>
       </div>
@@ -988,7 +1144,7 @@ button, input, select { font-family: var(--font); }
       </div>
       <div class="br-intro" data-reveal>
         <p>With five strategically located branches across South Africa, Seartec combines the personal service of a local partner with the capabilities of a national technology provider. Our regional teams understand the unique needs of the businesses they serve, providing responsive support, expert advice, and tailored technology solutions backed by over 50 years of industry experience.</p>
-        <p>Whether you're managing a single office or multiple locations nationwide, you'll benefit from dedicated account management, fast technical support, on-site service capabilities, and access to a broad portfolio of business technology solutions. From initial consultation and installation to ongoing maintenance and optimisation, we're committed to helping your organisation operate more efficiently, reduce costs, and stay productive.</p>
+        <p>Whether you’re managing a single office or multiple locations nationwide, you’ll benefit from dedicated account management, fast technical support, on-site service capabilities, and access to a broad portfolio of business technology solutions. From initial consultation and installation to ongoing maintenance and optimisation, we’re committed to helping your organisation operate more efficiently, reduce costs, and stay productive.</p>
         <p><b>No call centre runaround. No distant support teams.</b> Just real people, local expertise, and nationwide coverage when you need it most.</p>
       </div>
     </div>
@@ -997,7 +1153,7 @@ button, input, select { font-family: var(--font); }
 
 <footer class="site-footer">
   <div class="wrap">
-    <p class="foot-statement" aria-hidden="true">Experience tomorrow's<br><em>technology today</em><img data-asset="logoMark" alt="" class="logo-dot"></p>
+    <p class="foot-statement" aria-hidden="true">Experience tomorrow’s<br><em>technology today</em><img data-asset="logoMark" alt="" class="logo-dot"></p>
     <div class="foot-top">
       <img data-asset="logoDark" alt="Seartec">
       <div class="foot-social">
@@ -1007,15 +1163,15 @@ button, input, select { font-family: var(--font); }
         <a href="https://www.youtube.com/@SeartecCoZa" target="_blank" rel="noopener" aria-label="Seartec on YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.6a2.76 2.76 0 0 0-1.94-1.95C17.95 5.2 12 5.2 12 5.2s-5.95 0-7.66.45A2.76 2.76 0 0 0 2.4 7.6 29 29 0 0 0 2 12a29 29 0 0 0 .4 4.4 2.76 2.76 0 0 0 1.94 1.95C6.05 18.8 12 18.8 12 18.8s5.95 0 7.66-.45a2.76 2.76 0 0 0 1.94-1.95A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.4zM10 15.2V8.8l5.2 3.2z"/></svg></a>
       </div>
       <div class="foot-links"><a href="tel:+27100457018">010 045 7018</a><a href="mailto:enquiries@seartec.co.za?subject=General%20Enquiry%20%E2%80%93%20Website%20Footer">enquiries@seartec.co.za</a></div>
-      <div class="foot-links"><a href="https://irp.cdn-website.com/3a7d9eaf/files/uploaded/HCI_G26J08008+-+1.pdf" target="_blank" rel="noopener">b-bbee certificate</a><a href="https://www.seartec.co.za/paia" target="_blank" rel="noopener">paia</a></div>
+      <div class="foot-links"><a href="https://irp.cdn-website.com/3a7d9eaf/files/uploaded/HCI_G26J08008+-+1.pdf" target="_blank" rel="noopener">B-BBEE certificate</a><a href="https://www.seartec.co.za/paia" target="_blank" rel="noopener">PAIA</a></div>
     </div>
     <div class="foot-bottom">
       <div>© 2026 Seartec Trading (Pty) Ltd. All rights reserved.</div>
-      <div>Powered by CA Microsites, a Conversion Advantage platform</div>
       <div>Concept preview. Layouts, creative and campaign concepts shown here remain the property of Conversion Advantage until a signed engagement is in place.</div>
     </div>
   </div>
 </footer>
+<div class="ca-credit"><span>Powered by <b>CA Microsites</b>, a Conversion Advantage platform</span></div>
 
 <a class="wa" id="wa" href="https://wa.me/27739371065" aria-label="Speak to a specialist on WhatsApp">
   <span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12.01 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.08-1.33A9.96 9.96 0 0 0 12.01 22C17.53 22 22 17.52 22 12S17.53 2 12.01 2zm0 18.06c-1.63 0-3.150-.45-4.44-1.23l-.32-.19-3.02.79.8-2.94-.21-.3A8.030 8.030 0 0 1 3.99 12c0-4.42 3.6-8.02 8.02-8.02s8.02 3.6 8.02 8.02-3.6 8.06-8.02 8.06zm4.4-6c-.24-.12-1.43-.7-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.31-.74-1.79-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.43-.58 1.630-1.15.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg></span>
@@ -1024,25 +1180,25 @@ button, input, select { font-family: var(--font); }
 
 <script>
 window.SEARTEC_ASSETS = {
-  "logoDark": "img/logo-dark.png",
-  "logoWhite": "img/logo-white.png",
-  "logoMark": "img/logo-mark.png",
-  "hero": "img/hero.jpg",
-  "eduPrinter": "img/edu-printer.jpg",
-  "financePrinter": "img/finance-printer.jpg",
-  "publicSectorPrinter": "img/public-sector-printer.jpg",
-  "corpBizPrinter": "img/corp-biz-printer.jpg",
-  "healthcarePrinter": "img/healthcare-printer.jpg",
-  "industrialPrinter": "img/industrial-printer.jpg",
-  "warehousePrinter": "img/warehouse-printer.jpg",
-  "retailPrinter": "img/retail-printer.jpg",
-  "hospitalityPrinter": "img/hospitality-printer.jpg",
-  "printer": "img/printer.webp",
-  "tech1": "img/tech1.webp",
-  "tech2": "img/tech2.webp",
-  "tech3": "img/tech3.webp",
-  "tech4": "img/tech4.webp",
-  "tech5": "img/tech5.webp"
+  "heroPrinters": "img/hero-printers.webp",
+  "logoDark": "img/seartec-logo.png",
+  "logoWhite": "img/seartec-logo-white.png",
+  "logoMark": "img/seartec-mark.png",
+  "eduPrinter": "img/industry-education.jpg",
+  "financePrinter": "img/industry-finance.jpg",
+  "publicSectorPrinter": "img/industry-public-sector.jpg",
+  "corpBizPrinter": "img/industry-corporate.jpg",
+  "healthcarePrinter": "img/industry-healthcare.jpg",
+  "industrialPrinter": "img/industry-industrial.jpg",
+  "warehousePrinter": "img/industry-warehousing.jpg",
+  "retailPrinter": "img/industry-retail.jpg",
+  "hospitalityPrinter": "img/industry-hospitality.jpg",
+  "printer": "img/industry-legal.webp",
+  "tech1": "img/tech-1.webp",
+  "tech2": "img/tech-2.webp",
+  "tech3": "img/tech-3.webp",
+  "tech4": "img/tech-4.webp",
+  "tech5": "img/tech-5.webp"
 };
 (function () {
   var A = window.SEARTEC_ASSETS;
@@ -1068,15 +1224,15 @@ window.SEARTEC_ASSETS = {
   ];
 
   var teams = [
-    { name: "Small office", sub: "Under 10 people", head: "One reliable device for the whole office", body: "A desktop multifunction device that prints, copies, scans and emails, on a rental you can end with 30 days notice.", fig: "1 000–3 000", level: 0, device: "Desktop MFD", extra: "Service and consumables included" },
+    { name: "Small office", sub: "Under 10 people", head: "One reliable device for the whole office", body: "A desktop multifunction device that prints, copies, scans and emails, on a rental you can end with 30 days’ notice.", fig: "1 000–3 000", level: 0, device: "Desktop MFD", extra: "Service and consumables included" },
     { name: "Growing business", sub: "10 to 60 people", head: "A3 colour with visibility on spend", body: "A3 colour output with finishing, plus managed print reporting so you can see exactly where your print spend goes each month.", fig: "5 000–10 000", level: 1, device: "A3 colour MFD", extra: "Departmental cost tracking available" },
     { name: "High volume", sub: "Production and fleets", head: "A fleet sized on a free volume audit", body: "Multiple devices sized against a free volume audit, with booklet and folding finishing and a dedicated account technician.", fig: "30 000+", level: 2, device: "Production fleet", extra: "Fleet right-sizing and rollout included" }
   ];
 
   var plans = [
-    { name: "Essential desktop MFD", short: "Essential", vol: "Up to 3 000 pages a month", feats: ["Print, copy, scan and email", "Service and consumables included", "Free delivery, install and training", "Month-to-Month, 30 days notice"] },
-    { name: "Business A3 colour MFD", short: "Business", vol: "Up to 10 000 pages a month", feats: ["A3 colour, duplex and finishing", "Managed print reporting included", "Gap cover available as an add-on", "Month-to-Month, 30 days notice"] },
-    { name: "Production high volume", short: "Production", vol: "30 000 pages a month and up", feats: ["Booklet, staple and fold finishing", "Dedicated account technician", "Fleet sized on a free volume audit", "Month-to-Month, 30 days notice"] }
+    { name: "Essential desktop MFD", short: "Essential", vol: "Up to 3 000 pages a month", feats: ["Print, copy, scan and email", "Service and consumables included", "Free delivery, install and training", "Month-to-Month, 30 days’ notice"] },
+    { name: "Business A3 colour MFD", short: "Business", vol: "Up to 10 000 pages a month", feats: ["A3 colour, duplex and finishing", "Managed print reporting included", "Gap cover available as an add-on", "Month-to-Month, 30 days’ notice"] },
+    { name: "Production high volume", short: "Production", vol: "30 000 pages a month and up", feats: ["Booklet, staple and fold finishing", "Dedicated account technician", "Fleet sized on a free volume audit", "Month-to-Month, 30 days’ notice"] }
   ];
 
   var state = { step: 0, ind: 0, team: -1, plan: null };
@@ -1088,13 +1244,11 @@ window.SEARTEC_ASSETS = {
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
   function planIdx() { return state.plan !== null ? state.plan : (state.team === -1 ? -1 : state.team); }
 
-  function nextButton(label, enabled, go, hint) {
+  function nextButton(label, go) {
     var wrap = el("div", "next-row");
-    wrap.appendChild(el("span", "next-hint", hint || ""));
     var b = el("button", "btn-next", esc(label) + ' <span class="arr" aria-hidden="true">→</span>');
     b.type = "button";
-    if (!enabled) b.setAttribute("aria-disabled", "true");
-    b.addEventListener("click", function () { if (enabled) goTo(go); });
+    b.addEventListener("click", function () { goTo(go); });
     wrap.appendChild(b);
     return wrap;
   }
@@ -1119,7 +1273,7 @@ window.SEARTEC_ASSETS = {
       var ind = industries[state.ind];
       d = el("div", "detail is-open");
       d.innerHTML = '<div class="detail-kicker">' + esc(ind.name) + '</div><h3>' + esc(ind.head) + '</h3><p>' + esc(ind.body) + '</p><div class="detail-img"><img alt="" src="' + A[ind.img] + '"></div>';
-      d.appendChild(nextButton("next: team size", true, 1, ""));
+      d.appendChild(nextButton("next: team size", 1));
     }
     place(d, "ind-detail-col", rows, state.ind);
   }
@@ -1145,8 +1299,12 @@ window.SEARTEC_ASSETS = {
     var old = col.querySelector(".detail"); if (old) old.remove();
     var oldInline = rows.querySelector(".detail"); if (oldInline) oldInline.remove();
     prompt.hidden = state.team !== -1;
+    var oldEmpty = col.querySelector(".empty-next"); if (oldEmpty) oldEmpty.remove();
     if (state.team === -1) {
       if (mobile.matches) { col.classList.remove("is-inline-host"); }
+      var en = nextButton("next: see your plan", 2);
+      en.classList.add("empty-next");
+      col.appendChild(en);
       return;
     }
     var t = teams[state.team];
@@ -1160,7 +1318,7 @@ window.SEARTEC_ASSETS = {
       '<div class="scale">' + scale + '</div><div class="scale-labels"><span>3k</span><span>10k</span><span>30k+</span></div></div>' +
       '<ul class="facts"><li><span>Usually suits</span><b>' + esc(t.device) + '</b></li><li><span>Also included</span><b>' + esc(t.extra) + '</b></li></ul>' +
       '<div class="spacer"></div>';
-    d.appendChild(nextButton("next: see your plan", true, 2, ""));
+    d.appendChild(nextButton("next: see your plan", 2));
     place(d, "team-detail-col", rows, state.team);
   }
 
@@ -1191,7 +1349,7 @@ window.SEARTEC_ASSETS = {
         '<div class="detail-kicker">' + (matched ? "Recommended for your team" : (state.team === -1 ? "Plan details" : "Your own pick")) + '</div>' +
         '<h3>' + esc(p.name) + '</h3>' +
         '<p>' + esc(p.vol) + '. One monthly rental covering the device, service and consumables.</p>' +
-        '<ul class="plan-feats">' + p.feats.map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") + '</ul>' +
+        '<ul class="plan-feats">' + p.feats.map(function (f) { return "<li>" + esc(f).replace(/Month-to-Month/g, '<span class="nw">Month-to-Month</span>') + "</li>"; }).join("") + '</ul>' +
         (ind ? '<div class="fit"><b>For ' + esc(ind.name) + ':</b> ' + esc(ind.fit) + '</div>' : "") +
         '<div class="spacer"></div>' +
         '<div class="summary"><div class="sum-items">' +
@@ -1207,11 +1365,18 @@ window.SEARTEC_ASSETS = {
         document.dispatchEvent(new CustomEvent("planfinder:select", { detail: sel }));
       });
       var row = el("div", "next-row");
-      row.appendChild(el("div", "terms", '<span style="--c:var(--cyan)">no minimum term</span><span style="--c:var(--green)">30 days notice</span><span style="--c:var(--orange)">free install &amp; training</span>'));
+      row.appendChild(el("div", "terms", '<span style="--c:var(--cyan)">no minimum term</span><span style="--c:var(--green)">30 days’ notice</span><span style="--c:var(--orange)">free install &amp; training</span>'));
       row.appendChild(cta);
       d.appendChild(row);
     }
     place(d, "plan-detail-col", rows, eff);
+    if (eff === -1) {
+      var er = el("div", "next-row");
+      var ec = el("a", "btn-next", 'get a quote <span class="arr" aria-hidden="true">→</span>');
+      ec.href = "#quote";
+      er.appendChild(ec);
+      document.getElementById("plan-detail-col").appendChild(er);
+    }
   }
 
   /* On desktop the detail sits in the right column; on mobile it opens inline under its row. */
@@ -1267,13 +1432,7 @@ window.SEARTEC_ASSETS = {
 </script>
 <script>
 (function () {
-  var header = document.getElementById("siteHeader");
-  var wa = document.getElementById("wa");
-  var last = window.scrollY, menuOpen = false;
-  window.addEventListener("scroll", function () {
-    var y = window.scrollY;
-    last = y;
-  }, { passive: true });
+  var menuOpen = false;
 
   var menu = document.getElementById("menu"), openBtn = document.getElementById("menuOpen");
   function setMenu(on) {
@@ -1282,7 +1441,6 @@ window.SEARTEC_ASSETS = {
     menu.setAttribute("aria-hidden", String(!on));
     openBtn.setAttribute("aria-expanded", String(on));
     document.body.style.overflow = on ? "hidden" : "";
-    if (on) header.classList.remove("is-hidden");
   }
   openBtn.addEventListener("click", function () { setMenu(true); });
   document.getElementById("menuClose").addEventListener("click", function () { setMenu(false); });
@@ -1312,8 +1470,8 @@ window.SEARTEC_ASSETS = {
 
   /* Expertise: five strips, one opens on click */
   var XP = [
-    { c: "var(--cyan)", img: "tech1", tab: "The pressure", k: "The pressure", h: "“I don't have time to keep figuring this out.”", p: "When the same fault keeps coming back, someone in your team loses part of every day to it." },
-    { c: "var(--green)", img: "tech2", tab: "Business impact", k: "Business impact", h: "Every jam costs more than paper.", p: "Recurring faults and unsuitable equipment create unnecessary interruption." },
+    { c: "var(--cyan)", img: "tech1", tab: "The pressure", k: "The pressure", h: "“I don’t have time to keep figuring this out.”", p: "When the same fault keeps coming back, someone in your team loses part of every day to it." },
+    { c: "var(--green)", img: "tech2", tab: "Business impact", k: "Business impact", h: "Every jam costs more than paper.", p: "Recurring faults and unsuitable equipment create unnecessary interruptions." },
     { c: "var(--orange)", img: "tech3", tab: "Expert solution", k: "Expert solution", h: "Find the cause, not just the fault.", p: "Technicians diagnose, advise and recommend around your real environment: team size, volume, colour and scanning needs." },
     { c: "var(--red)", img: "tech4", tab: "Ongoing confidence", k: "Ongoing confidence", h: "Support that goes beyond installation.", p: "Setup, servicing, diagnostics and support continue long after the sale." },
     { c: "#1ba553", img: "tech5", tab: "Expert advice", k: "Need expert advice?", h: "Speak to someone who already understands the technology.", p: "Tell us what keeps going wrong. A Seartec specialist will help you find the right fix.", cta: true }
@@ -1375,13 +1533,13 @@ window.SEARTEC_ASSETS = {
     var r = reviews[i];
     var f = document.createElement("figure");
     f.className = "rev-quote is-open"; f.style.setProperty("--c", r.c); f.setAttribute("role", "tabpanel");
-    f.innerHTML = '<span class="rev-mark" aria-hidden="true">“</span><blockquote>' + r.t + '</blockquote><figcaption><span><b>' + r.n + '</b> · ' + r.s + '</span><span class="stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption>';
+    f.innerHTML = '<span class="rev-mark" aria-hidden="true">“</span><blockquote>' + r.t + '</blockquote><figcaption><span><b>' + r.n + '</b></span><span class="stars" aria-label="5 out of 5 stars">★★★★★</span></figcaption>';
     stage.appendChild(f);
   }
   reviews.forEach(function (r, i) {
     var b = document.createElement("button");
     b.type = "button"; b.className = "rev-tab"; b.setAttribute("role", "tab"); b.style.setProperty("--c", r.c);
-    b.innerHTML = '<b>' + r.n + '</b><span>' + r.s + '</span><i aria-hidden="true">→</i>';
+    b.innerHTML = '<b>' + r.n + '</b><i aria-hidden="true">→</i>';
     b.addEventListener("click", function () { showReview(i); });
     b.addEventListener("keydown", function (e) {
       if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); var n = (i + (e.key === "ArrowDown" ? 1 : reviews.length - 1)) % reviews.length; showReview(n); nav.children[n].focus(); }
@@ -1416,40 +1574,6 @@ window.SEARTEC_ASSETS = {
     carry.classList.add("is-on");
   });
 
-  document.querySelectorAll(".sol-tag[data-help]").forEach(function (tag) {
-    tag.addEventListener("click", function (e) {
-      e.preventDefault();
-      var help = tag.getAttribute("data-help");
-      if (help) document.getElementById("f-help").value = help;
-      var quote = document.getElementById("quote");
-      if (quote) quote.scrollIntoView({ behavior: "smooth", block: "start" });
-      var carry = document.getElementById("carry");
-      carry.classList.remove("is-on"); void carry.offsetWidth;
-      carry.innerHTML = '<span>We’ve pre-filled <b>' + (help || "").replace(/&/g, "&amp;") + '</b> below. Change anything you like.</span>';
-      carry.classList.add("is-on");
-    });
-  });
-
-  /* ===== FORM CONFIG: edit here ======================================
-     endpoint      Formspree form endpoint (Formspree > form > Integration).
-     defaultInbox  Where "not sure" / blank branch enquiries belong.
-     branchInbox   Branch -> inbox map. Free plan: every submission goes to
-                   the one inbox linked in Formspree; these addresses are
-                   added to the email (route_to + subject) so a mailbox rule
-                   or a person can forward it. See README > Branch routing.
-     ================================================================== */
-  var FORM_CONFIG = {
-    endpoint: "https://formspree.io/f/YOUR_FORM_ID",
-    defaultInbox: "enquiries@seartec.co.za",
-    branchInbox: {
-      "Cape Town": "capetown@seartec.co.za",
-      "Paarl": "winelands@seartec.co.za",
-      "Johannesburg": "johannesburg@seartec.co.za",
-      "Pretoria": "pretoria@seartec.co.za",
-      "Durban": "kwa-zulunatal@seartec.co.za"
-    }
-  };
-
   var form = document.getElementById("quoteForm"), sent = document.getElementById("formSent");
   function setErr(id, msg) { var f = document.getElementById("f-" + id).parentNode; f.classList.toggle("has-error", !!msg); document.getElementById("e-" + id).textContent = msg; }
   form.addEventListener("submit", function (e) {
@@ -1465,42 +1589,22 @@ window.SEARTEC_ASSETS = {
     if (phone.replace(/\D/g, "").length < 7) { setErr("phone", "Add a contact number so we can reach you."); ok = false; firstInvalid = firstInvalid || "f-phone"; } else setErr("phone", "");
     if (!ok) { document.getElementById(firstInvalid).focus(); return; }
     var plan = document.getElementById("f-plan").value;
-    var branch = document.getElementById("f-branch").value;
-    var company = document.getElementById("f-company").value.trim();
-    var routeTo = FORM_CONFIG.branchInbox[branch] || FORM_CONFIG.defaultInbox;
-    var branchLabel = FORM_CONFIG.branchInbox[branch] ? branch : "No branch";
-    var status = document.getElementById("formStatus");
-    var btn = form.querySelector('button[type="submit"]');
-    status.textContent = "";
-    if (FORM_CONFIG.endpoint.indexOf("YOUR_FORM_ID") > -1) { status.textContent = "Form not connected yet: set FORM_CONFIG.endpoint."; return; }
-
-    var data = new FormData(form);
-    data.append("_subject", "Quote request – " + branchLabel + " – " + (company || (first + " " + last)));
-    data.append("route_to", routeTo);
-    data.append("page", location.href);
-    btn.setAttribute("aria-busy", "true");
-
-    fetch(FORM_CONFIG.endpoint, { method: "POST", body: data, headers: { "Accept": "application/json" } })
-      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, body: j }; }); })
-      .then(function (res) {
-        btn.removeAttribute("aria-busy");
-        if (!res.ok) {
-          var msg = res.body && res.body.errors ? res.body.errors.map(function (x) { return x.message; }).join(" ") : "";
-          status.textContent = "Sorry, that didn't send" + (msg ? " (" + msg + ")" : "") + ". Please try again, or email " + FORM_CONFIG.defaultInbox + ".";
-          return;
-        }
-        if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { form: "quote", branch: branchLabel });
-        if (window.dataLayer && window.dataLayer.push) window.dataLayer.push({ event: "quote_submit", branch: branchLabel, help: data.get("help") });
-        document.getElementById("sentSummary").textContent = "A Seartec consultant will contact " + first + " within one business day with a free cost-saving comparison" + (plan && plan !== "Not sure yet" ? " for the " + plan + " plan." : ".");
+    var btn = form.querySelector('button[type="submit"]'), err = document.getElementById("formError");
+    err.hidden = true; btn.setAttribute("aria-busy", "true");
+    fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); })
+      .then(function () {
+        document.getElementById("sentSummary").textContent = "A Seartec specialist will contact " + first + " within one business day with a free cost-saving analysis" + (plan && plan !== "Not sure yet" ? " for the " + plan + " plan." : ".");
         form.hidden = true; sent.hidden = false;
       })
       .catch(function () {
-        btn.removeAttribute("aria-busy");
-        status.textContent = "Network problem, that didn't send. Please try again, or email " + FORM_CONFIG.defaultInbox + ".";
-      });
+        err.textContent = "Sorry, your request didn’t go through. Please try again, or call us on 010 045 7018.";
+        err.hidden = false;
+      })
+      .then(function () { btn.removeAttribute("aria-busy"); });
   });
   document.getElementById("sendAnother").addEventListener("click", function () {
-    form.reset(); document.getElementById("formStatus").textContent = ""; document.getElementById("carry").classList.remove("is-on");
+    form.reset(); document.getElementById("carry").classList.remove("is-on");
     sent.hidden = true; form.hidden = false; document.getElementById("f-first").focus();
   });
 })();
@@ -1508,8 +1612,7 @@ window.SEARTEC_ASSETS = {
 
 <script>
 (function () {
-  // Solutions timeline: scroll-linked progress, same behaviour as Flightec's
-  // "How We Work" (vertical). One "playhead" sits at PLAYHEAD of the viewport
+  // Solutions timeline: scroll-linked progress. One "playhead" sits at PLAYHEAD of the viewport
   // height. Each dot lights up once its centre passes the playhead, and the
   // segment below it fills in that row's colour as the playhead travels to
   // the next dot -- so the line tip and the dot always meet exactly.
@@ -1578,5 +1681,59 @@ window.SEARTEC_ASSETS = {
 })();
 </script>
 
+<script>
+/* Hero depth: layers shift gently with the mouse (desktop only, respects reduced motion) */
+(function () {
+  var hero = document.getElementById("top");
+  if (!hero || !window.matchMedia) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  var tx = 0, ty = 0, x = 0, y = 0, raf = 0;
+  function tick() {
+    x += (tx - x) * 0.07; y += (ty - y) * 0.07;
+    hero.style.setProperty("--mx", x.toFixed(4)); hero.style.setProperty("--my", y.toFixed(4));
+    raf = (Math.abs(tx - x) > 0.001 || Math.abs(ty - y) > 0.001) ? requestAnimationFrame(tick) : 0;
+  }
+  function go() { if (!raf) raf = requestAnimationFrame(tick); }
+  hero.addEventListener("pointermove", function (e) {
+    var r = hero.getBoundingClientRect();
+    tx = ((e.clientX - r.left) / r.width) * 2 - 1; ty = ((e.clientY - r.top) / r.height) * 2 - 1; go();
+  });
+  hero.addEventListener("pointerleave", function () { tx = 0; ty = 0; go(); });
+})();
+</script>
+
+<script>
+/* Hero scroll fallback + idle pause.
+   Browsers with CSS scroll timelines run the zoom/fade in CSS (see "Hero scroll effect").
+   Others get this rAF version: it only writes transform/opacity to layers that are
+   already promoted (will-change), and caches the viewport height. */
+(function () {
+  var hero = document.getElementById("top"); if (!hero) return;
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (e) { hero.classList.toggle("is-idle", !e[0].isIntersecting); }).observe(hero);
+  }
+  if (window.CSS && CSS.supports && CSS.supports("animation-timeline: scroll()")) return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var copy = hero.querySelector(".hero-copy"), bg = hero.querySelector(".hero-bg"), veil = hero.querySelector(".hero-veil");
+  var fades = copy ? copy.querySelectorAll(":scope > .eyebrow, :scope > h1, :scope > .hero-sub, :scope > .hero-art-wrap") : [];
+  var vh = window.innerHeight || 800, ticking = false, lastY = -1;
+  function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function update() {
+    ticking = false;
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    if (y === lastY) return; lastY = y;
+    var t = clamp(y / (vh * 0.7)), z = clamp(y / vh), o = (1 - t).toFixed(3);
+    if (copy) copy.style.transform = "translate3d(0," + (-48 * t).toFixed(1) + "px,0)";
+    for (var i = 0; i < fades.length; i++) fades[i].style.opacity = o;
+    if (bg) bg.style.transform = "scale(" + (1 + 0.1 * z).toFixed(4) + ")";
+    if (veil) veil.style.opacity = (0.75 * z).toFixed(3);
+  }
+  function req() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener("scroll", req, { passive: true });
+  window.addEventListener("resize", function () { vh = window.innerHeight || 800; lastY = -1; req(); });
+  update();
+})();
+</script>
 </body>
 </html>
