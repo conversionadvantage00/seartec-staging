@@ -651,6 +651,10 @@ button, input, select { font-family: var(--font); }
   .xp-body { position: relative; padding: 24px 20px 22px; }
   .xp-strip:not(.is-open) .xp-body { display: none; }
   .xp-frame { flex: none; aspect-ratio: 1 / 1; max-width: 100%; }
+  .xp-foot { flex-direction: column; align-items: stretch; gap: 12px; }
+  .xp-step { white-space: nowrap; }
+  .xp-foot .btn-next { width: 100%; min-width: 0; justify-content: space-between; gap: 12px; padding: 14px 14px 14px 22px; font-size: 16px; }
+  .xp-foot .btn-next .arr { flex: none; }
 }
 
 /* ================= REVIEWS (editorial slider, click only) ================= */
@@ -1087,8 +1091,8 @@ button, input, select { font-family: var(--font); }
         <p class="lede">Whether you’re looking for printing, document workflow, display technology, or software solutions, our specialists will help you find the best fit for your business. <b>No obligation, free cost-saving analysis</b> and <b>no long-term contract lock-ins</b>.</p>
       </div>
       <div class="form-card" data-reveal>
-        <form id="quoteForm" action="https://formspree.io/f/FORMSPREE_ID" method="POST" novalidate>
-          <input type="hidden" name="_subject" value="New Seartec quote request">
+        <form id="quoteForm" action="https://formspree.io/f/xjygdboz" method="POST" novalidate>
+          <input type="hidden" name="_subject" id="f-subject" value="New Seartec quote request">
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <h3>Your free cost-saving quote</h3>
           <p>A Seartec specialist will get in touch within one business day.</p>
@@ -1590,7 +1594,9 @@ window.SEARTEC_ASSETS = {
     if (!ok) { document.getElementById(firstInvalid).focus(); return; }
     var plan = document.getElementById("f-plan").value;
     var btn = form.querySelector('button[type="submit"]'), err = document.getElementById("formError");
-    err.hidden = true; btn.setAttribute("aria-busy", "true");
+    var branch = document.getElementById("f-branch").value, company = document.getElementById("f-company").value.trim();
+    document.getElementById("f-subject").value = "New Seartec quote request: " + first + " " + last + (company ? " (" + company + ")" : "") + (branch ? " / " + branch : "");
+    err.hidden = true; btn.setAttribute("aria-busy", "true"); btn.disabled = true;
     fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
       .then(function (r) { if (!r.ok) throw new Error(r.status); })
       .then(function () {
@@ -1601,7 +1607,7 @@ window.SEARTEC_ASSETS = {
         err.textContent = "Sorry, your request didn’t go through. Please try again, or call us on 010 045 7018.";
         err.hidden = false;
       })
-      .then(function () { btn.removeAttribute("aria-busy"); });
+      .then(function () { btn.removeAttribute("aria-busy"); btn.disabled = false; });
   });
   document.getElementById("sendAnother").addEventListener("click", function () {
     form.reset(); document.getElementById("carry").classList.remove("is-on");
