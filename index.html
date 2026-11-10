@@ -10,6 +10,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NLG2HGG5');</script>
 <!-- End Google Tag Manager -->
+<script>
+/* Tracking helper: pushes a named event to the GTM data layer. Never send personal details through this. */
+window.seartecTrack = function (event, params) {
+  window.dataLayer = window.dataLayer || [];
+  var o = { event: event }; for (var k in (params || {})) o[k] = params[k];
+  window.dataLayer.push(o);
+};
+</script>
 <title>Seartec Microsite</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1277,7 +1285,7 @@ window.SEARTEC_ASSETS = {
       var r = el("button", "row", '<span class="row-text"><span class="row-name">' + esc(ind.name) + '</span></span><span class="pm" aria-hidden="true"></span>');
       r.type = "button";
       r.setAttribute("aria-expanded", String(state.ind === i));
-      r.addEventListener("click", function () { state.ind = state.ind === i ? -1 : i; renderIndustries(); renderPlans(); syncEdges(); });
+      r.addEventListener("click", function () { state.ind = state.ind === i ? -1 : i; if (state.ind === i) seartecTrack("plan_finder_select", { pf_step: "industry", pf_value: ind.name }); renderIndustries(); renderPlans(); syncEdges(); });
       rows.appendChild(r);
     });
     var d;
@@ -1305,6 +1313,7 @@ window.SEARTEC_ASSETS = {
       r.addEventListener("click", function () {
         state.team = state.team === i ? -1 : i;
         state.plan = null;
+        if (state.team === i) seartecTrack("plan_finder_select", { pf_step: "team_size", pf_value: t.name });
         renderTeams(); renderPlans(); syncEdges();
       });
       rows.appendChild(r);
@@ -1348,7 +1357,7 @@ window.SEARTEC_ASSETS = {
       var r = el("button", "row", '<span class="row-text"><span class="row-name">' + esc(p.short) + tag + '</span><span class="row-sub">' + esc(p.vol) + '</span></span><span class="pm" aria-hidden="true"></span>');
       r.type = "button";
       r.setAttribute("aria-expanded", String(eff === i));
-      r.addEventListener("click", function () { state.plan = i; renderPlans(); syncEdges(); });
+      r.addEventListener("click", function () { state.plan = i; seartecTrack("plan_finder_select", { pf_step: "plan", pf_value: p.name }); renderPlans(); syncEdges(); });
       rows.appendChild(r);
     });
     var d;
@@ -1377,6 +1386,7 @@ window.SEARTEC_ASSETS = {
       cta.addEventListener("click", function () {
         var sel = { industry: ind ? ind.name : null, teamSize: state.team === -1 ? null : teams[state.team].name, plan: p.name };
         window.seartecPlanFinder = sel;
+        seartecTrack("plan_finder_complete", { industry: sel.industry || "not selected", team_size: sel.teamSize || "not selected", plan: sel.plan, recommended_plan: matched ? "yes" : "no" });
         document.dispatchEvent(new CustomEvent("planfinder:select", { detail: sel }));
       });
       var row = el("div", "next-row");
@@ -1517,8 +1527,8 @@ window.SEARTEC_ASSETS = {
     });
   }
   strips.forEach(function (s, k) {
-    s.querySelector(".xp-tab").addEventListener("click", function () { openXp(k); });
-    var nx = s.querySelector(".xp-next"); if (nx) nx.addEventListener("click", function () { openXp(k + 1); });
+    s.querySelector(".xp-tab").addEventListener("click", function () { openXp(k); seartecTrack("expertise_open", { expertise_topic: XP[k].tab }); });
+    var nx = s.querySelector(".xp-next"); if (nx) nx.addEventListener("click", function () { openXp(k + 1); seartecTrack("expertise_open", { expertise_topic: XP[k + 1].tab }); });
   });
   openXp(0);
 
@@ -1531,6 +1541,7 @@ window.SEARTEC_ASSETS = {
       qs.forEach(function (o) { o.setAttribute("aria-expanded", "false"); });
       if (!open) q.setAttribute("aria-expanded", "true");
       faq.classList.toggle("has-open", !open);
+      if (!open) seartecTrack("faq_open", { faq_question: q.querySelector(".faq-text").textContent.trim() });
     });
   });
 
@@ -1555,7 +1566,7 @@ window.SEARTEC_ASSETS = {
     var b = document.createElement("button");
     b.type = "button"; b.className = "rev-tab"; b.setAttribute("role", "tab"); b.style.setProperty("--c", r.c);
     b.innerHTML = '<b>' + r.n + '</b><i aria-hidden="true">→</i>';
-    b.addEventListener("click", function () { showReview(i); });
+    b.addEventListener("click", function () { showReview(i); seartecTrack("review_select", { review_name: r.n }); });
     b.addEventListener("keydown", function (e) {
       if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); var n = (i + (e.key === "ArrowDown" ? 1 : reviews.length - 1)) % reviews.length; showReview(n); nav.children[n].focus(); }
     });
@@ -1590,6 +1601,8 @@ window.SEARTEC_ASSETS = {
   });
 
   var form = document.getElementById("quoteForm"), sent = document.getElementById("formSent");
+  var formStarted = false;
+  form.addEventListener("focusin", function () { if (formStarted) return; formStarted = true; seartecTrack("form_start", { form_name: "quote_form" }); });
   function setErr(id, msg) { var f = document.getElementById("f-" + id).parentNode; f.classList.toggle("has-error", !!msg); document.getElementById("e-" + id).textContent = msg; }
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -1602,7 +1615,7 @@ window.SEARTEC_ASSETS = {
     if (!last) { setErr("last", "Add your last name."); ok = false; firstInvalid = firstInvalid || "f-last"; } else setErr("last", "");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr("email", "Add a work email like you@company.co.za."); ok = false; firstInvalid = firstInvalid || "f-email"; } else setErr("email", "");
     if (phone.replace(/\D/g, "").length < 7) { setErr("phone", "Add a contact number so we can reach you."); ok = false; firstInvalid = firstInvalid || "f-phone"; } else setErr("phone", "");
-    if (!ok) { document.getElementById(firstInvalid).focus(); return; }
+    if (!ok) { seartecTrack("form_error", { form_name: "quote_form", error_type: "validation" }); document.getElementById(firstInvalid).focus(); return; }
     var plan = document.getElementById("f-plan").value;
     var btn = form.querySelector('button[type="submit"]'), err = document.getElementById("formError");
     var branch = document.getElementById("f-branch").value, company = document.getElementById("f-company").value.trim();
@@ -1614,9 +1627,7 @@ window.SEARTEC_ASSETS = {
         document.getElementById("sentSummary").textContent = "A Seartec specialist will contact " + first + " within one business day with a free cost-saving analysis" + (plan && plan !== "Not sure yet" ? " for the " + plan + " plan." : ".");
         form.hidden = true; sent.hidden = false;
         /* GTM: successful quote request (no personal details are sent) */
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "generate_lead",
+        seartecTrack("generate_lead", {
           form_name: "quote_form",
           branch: branch || "not selected",
           industry: document.getElementById("f-industry").value || "not selected",
@@ -1628,11 +1639,12 @@ window.SEARTEC_ASSETS = {
       .catch(function () {
         err.textContent = "Sorry, your request didn’t go through. Please try again, or call us on 010 045 7018.";
         err.hidden = false;
+        seartecTrack("form_error", { form_name: "quote_form", error_type: "send_failed" });
       })
       .then(function () { btn.removeAttribute("aria-busy"); btn.disabled = false; });
   });
   document.getElementById("sendAnother").addEventListener("click", function () {
-    form.reset(); document.getElementById("carry").classList.remove("is-on");
+    form.reset(); formStarted = false; document.getElementById("carry").classList.remove("is-on");
     sent.hidden = true; form.hidden = false; document.getElementById("f-first").focus();
   });
 })();
